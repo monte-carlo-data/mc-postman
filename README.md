@@ -1,6 +1,6 @@
 # Monte Carlo Postman Collection
 
-This a postman collection for all of Monte Carlo's public APIs. It was generated using a modified version of [Graphman](https://github.com/Escape-Technologies/graphman) which is included in this repo.
+This a postman collection for all of Monte Carlo's public APIs. It was generated using a modified version of [Graphman](https://github.com/Escape-Technologies/graphman) which is included in this repo. Start by importing the mc_postman_collecton.json to postman.
 
 ![Screenshot of collection](https://github.com/monte-carlo-data/mc-postman/blob/main/images/postman.png "Postman")
 

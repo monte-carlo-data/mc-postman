@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Person to greet'
-        default: 'World'
+        description: 'Why are you running manually?'
+        default: 'just cuz'
 
 jobs:
 
@@ -40,25 +40,9 @@ jobs:
     - name: check for changes and update repo
       run: python script/main.py
 
-    - name: create branch and add files
-      run: |
-        git checkout -b update
-        git add .
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -m "added updated collection file"
-
-    - name: push branch
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: update
-
     - name: Create pull request
-      uses: devops-infra/action-pull-request@v0.5.5
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        title: Automatic pull request
-        target_branch: main
-        source_branch: update
-
+        branch: updated-collection-file
+        title: Collection file updated - Manual workflow
+        body: Automated changes.  Collection file has been regenerated.  Please review and merge

@@ -1,11 +1,23 @@
 import json
 import os
 from datetime import datetime
+import sys
 
 def get_date():
     return datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
 
-def main():
+def replace_keys(id, key):
+    with open('new.json', 'r') as f:
+        data = f.read()
+        data = data.replace(id, "{{x-mcd-id}}")
+        data = data.replace(key, "{{x-mcd-token}}")
+
+    with open('new.json', 'w') as f:
+        f.write(data)
+
+def main(id, key):
+    replace_keys(id, key)
+
     with open('mc_postman_collection.json', 'r') as f1:
         f1_data = json.load(f1)
 
@@ -19,4 +31,4 @@ def main():
         os.rename('new.json', 'mc_postman_collection.json')
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1], sys.argv[2])

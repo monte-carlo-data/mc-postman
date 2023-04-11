@@ -38,7 +38,7 @@ jobs:
       run: rm -rf graphman/
 
     - name: check for changes and update repo
-      run: python script/main.py
+      run: python script/main.py ${{ secrets.MCD_ID }} ${{ secrets.MCD_TOKEN }}
 
     - name: Create pull request
       uses: peter-evans/create-pull-request@v5.0.0

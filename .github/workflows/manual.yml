@@ -1,0 +1,48 @@
+name: Generate postman collection and update if changed
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Why are you running manually?'
+        default: 'just cuz'
+
+jobs:
+
+  generate-collection:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: checkout repo
+      uses: actions/checkout@v3
+
+    - name: setup python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.9.x'
+
+    - name: get graphman
+      uses: actions/checkout@v3
+      with:
+        repository: Escape-Technologies/graphman
+        path: graphman
+
+    - name: set up deno
+      uses: denoland/setup-deno@v1
+
+    - name: run the graphman command
+      run: deno run --allow-net --allow-read --allow-write graphman/src/cli.ts https://api.getmontecarlo.com/graphql --H="x-mcd-id:${{ secrets.MCD_ID }}" -H="x-mcd-token:${{ secrets.MCD_TOKEN }}" --out=new.json
+
+    - name: cleanup graphman
+      run: rm -rf graphman/
+
+    - name: check for changes and update repo
+      run: python script/main.py
+
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v5.0.0
+      with:
+        branch: updated-collection-file
+        title: Collection file updated - Manual workflow
+        body: Automated changes.  Collection file has been regenerated.  Please review and merge

@@ -6,6 +6,15 @@ import sys
 def get_date():
     return datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
 
+def update_collection_name():
+    # api.getmontecarlo.com-GraphMan
+    with open('new.json', 'r') as f:
+        data = f.read()
+        data = data.replace("api.getmontecarlo.com-GraphMan", "Monte Carlo GraphQL Collection")
+
+    with open('new.json', 'w') as f:
+        f.write(data)
+
 def replace_keys(id, key):
     with open('new.json', 'r') as f:
         data = f.read()
@@ -17,6 +26,7 @@ def replace_keys(id, key):
 
 def main(id, key):
     replace_keys(id, key)
+    update_collection_name()
 
     with open('mc_postman_collection.json', 'r') as f1:
         f1_data = json.load(f1)

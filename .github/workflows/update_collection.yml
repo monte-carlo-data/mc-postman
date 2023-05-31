@@ -36,7 +36,7 @@ jobs:
 #       run: cd postmanctl/cmd/postmanctl && cat ../../../mc_postman_collection.json
       
     - name: enter directory postmanctl && replace collection
-      run: cd postmanctl/cmd/postmanctl &&  cat ../../../mc_postman_collection.json | go run main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2
+      run: postmanctl replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2
       
  
 

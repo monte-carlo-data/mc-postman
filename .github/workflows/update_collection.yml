@@ -33,7 +33,7 @@ jobs:
 #       run:  cd postmanctl/cmd/postmanctl && go install 
 
     - name: debug echo
-      run: echo ${{ secrets.POSTMANSECRET }}
+      run: 'echo ${{ secrets.POSTMANSECRET }}'
 
 #     - name: write config yaml
 #       run: cd postmanctl/cmd/postmanctl && echo ${{ secrets.POSTMANSECRET }} > config.yml

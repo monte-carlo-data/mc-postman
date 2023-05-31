@@ -29,8 +29,11 @@ jobs:
     - name: Setup Go environment 
       uses: actions/setup-go@v4.0.1
       
+    - name: view dir
+      run: ls -l && pwd
+      
     - name: enter directory postmanctl
-      run: cd cmd/postmanctl && go install 
+      run: cd postmanctl/cmd/postmanctl && go install 
       
     - name: replace collection with latest
       run: go run main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -h

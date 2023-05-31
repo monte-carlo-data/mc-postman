@@ -1,0 +1,40 @@
+name: Generate postman collection and update if changed
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Why are you running manually?'
+        default: 'just cuz'
+
+jobs:
+
+  generate-collection:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: checkout repo
+      uses: actions/checkout@v3
+
+    - name: clone postmanctl
+      uses: actions/checkout@v3
+      
+    - name: get graphman
+      uses: actions/checkout@v3
+      with:
+       repository: kevinswiber/postmanctl
+       path: postmanctl
+       
+    - name: Setup Go environment 
+      uses: actions/setup-go@v4.0.1
+      
+    - name: enter directory postmanctl
+      run: cd cmd/postmanctl && go install 
+      
+    - name: replace collection with latest
+      run: go run main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -h
+
+
+   
+      

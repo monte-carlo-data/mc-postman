@@ -17,26 +17,26 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v3
 
-    - name: clone postmanctl
-      uses: actions/checkout@v3
-      
-    - name: get graphman
+    - name: get postmanctl
       uses: actions/checkout@v3
       with:
        repository: kevinswiber/postmanctl
        path: postmanctl
        
-    - name: Setup Go environment 
-      uses: actions/setup-go@v4.0.1
+#     - name: Setup Go environment 
+#       uses: actions/setup-go@v4.0.1
       
-    - name: view dir
-      run: ls -l && pwd
+#     - name: view dir
+#       run: ls -l && pwd
       
-    - name: installing go dependencies 
-      run:  cd postmanctl/cmd/postmanctl && go install 
+#     - name: installing go dependencies 
+#       run:  cd postmanctl/cmd/postmanctl && go install 
       
-    - name: enter directory postmanctl && replace collection
-      run: go run postmanctl/cmd/postmanctl/main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -f mc_postman_collection.json
+    - name: debug
+      run: cd postmanctl/cmd/postmanctl && cat ../../../mc_postman_collection.json
+      
+#     - name: enter directory postmanctl && replace collection
+#       run: go run postmanctl/cmd/postmanctl/main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -f mc_postman_collection.json
       
  
 

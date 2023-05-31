@@ -34,9 +34,14 @@ jobs:
       
 #     - name: debug
 #       run: cd postmanctl/cmd/postmanctl && cat ../../../mc_postman_collection.json
-      
+    - name: write config yaml
+      run: cd postmanctl/cmd/postmanctl && echo ${{ secrets.POSTMANSECRET }} > config.yml
+    
+    - name: configure
+      run: cd postmanctl/cmd/postmanctl && go run main.go config --config config.yml
+    
     - name: enter directory postmanctl && replace collection
-      run: postmanctl replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2
+      run: cd postmanctl/cmd/postmanctl && go run main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -f  ../../../mc_postman_collection.json
       
  
 

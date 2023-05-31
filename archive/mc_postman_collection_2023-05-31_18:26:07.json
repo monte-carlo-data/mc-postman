@@ -8,80 +8,6 @@
 			"name": "Queries",
 			"item": [
 				{
-					"name": "getDataProduct",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getDataProduct($dataProductId: UUID!, $domainId: UUID) {\n  getDataProduct(dataProductId: $dataProductId, domainId: $domainId) {\n    __typename\n    id # The ID of the object.\n    createdTime\n    updatedTime\n    uuid # The data product id\n    name # User defined data product name.\n    # createdInDomain # Related data product created in a domain\n    # account\n    description\n    # createdBy\n    # lastUpdatedBy\n    isDeleted # Flag to indicate whether this entry is in use or not.\n    deletedAt\n    # deletedBy\n    # assets # Data product an asset belongs to\n  }\n}",
-								"variables": "{\n\t\"dataProductId\": null,\n\t\"domainId\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Get a data product"
-					},
-					"response": []
-				},
-				{
-					"name": "parseQuery",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query parseQuery($query: String!, $resourceId: UUID, $database: String, $schema: String) {\n  parseQuery(\n    query: $query\n    resourceId: $resourceId\n    database: $database\n    schema: $schema\n  ) {\n    __typename\n    # sources # Parsed query sources\n    # destination # Parsed query destination\n    errors # SQL parser errors\n  }\n}",
-								"variables": "{\n\t\"query\": null,\n\t\"resourceId\": null,\n\t\"database\": null,\n\t\"schema\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
 					"name": "pingDataCollector",
 					"request": {
 						"method": "POST",
@@ -172,8 +98,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getGithubPullRequests($incidentUuid: UUID!, $mcon: String, $includeZeroScore: Boolean, $limit: Int) {\n  getGithubPullRequests(\n    incidentUuid: $incidentUuid\n    mcon: $mcon\n    includeZeroScore: $includeZeroScore\n    limit: $limit\n  ) {\n    __typename\n    # pullRequests # List of pull requests\n  }\n}",
-								"variables": "{\n\t\"incidentUuid\": null,\n\t\"mcon\": null,\n\t\"includeZeroScore\": null,\n\t\"limit\": null\n}"
+								"query": "query getGithubPullRequests($incidentUuid: UUID!, $limit: Int) {\n  getGithubPullRequests(incidentUuid: $incidentUuid, limit: $limit) {\n    __typename\n    # pullRequests # List of pull requests\n  }\n}",
+								"variables": "{\n\t\"incidentUuid\": null,\n\t\"limit\": null\n}"
 							}
 						},
 						"url": {
@@ -209,8 +135,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getGithubPullRequestsForTable($mcon: String!, $includeZeroScore: Boolean, $limit: Int) {\n  getGithubPullRequestsForTable(\n    mcon: $mcon\n    includeZeroScore: $includeZeroScore\n    limit: $limit\n  ) {\n    __typename\n    # pullRequests # List of pull requests\n  }\n}",
-								"variables": "{\n\t\"mcon\": null,\n\t\"includeZeroScore\": null,\n\t\"limit\": null\n}"
+								"query": "query getGithubPullRequestsForTable($mcon: String!, $limit: Int) {\n  getGithubPullRequestsForTable(mcon: $mcon, limit: $limit) {\n    __typename\n    # pullRequests # List of pull requests\n  }\n}",
+								"variables": "{\n\t\"mcon\": null,\n\t\"limit\": null\n}"
 							}
 						},
 						"url": {
@@ -378,228 +304,6 @@
 					"response": []
 				},
 				{
-					"name": "getIndexedFieldSpecs",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getIndexedFieldSpecs {\n  getIndexedFieldSpecs {\n    __typename\n    fieldName\n    displayName\n    displayable\n    aggregatable\n    facetable\n    filterable\n    facetSearchable\n  }\n}",
-								"variables": "{\n\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "getQueryLogs",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getQueryLogs($request: QueryLogsRequestInput!) {\n  getQueryLogs(request: $request) {\n    __typename\n    total\n    # results\n  }\n}",
-								"variables": "{\n\t\"request\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "getQueryLogsFacetsV2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getQueryLogsFacetsV2($request: QueryLogsFacetRequestTypeV2!) {\n  getQueryLogsFacetsV2(request: $request) {\n    __typename\n    fieldName # Field name\n    # facetResults # Facet results\n  }\n}",
-								"variables": "{\n\t\"request\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "getQueryLogsFacets",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getQueryLogsFacets($request: QueryLogsFacetRequestType!) {\n  getQueryLogsFacets(request: $request) {\n    __typename\n    fieldName # Field name\n    # facetResults # Facet results\n  }\n}",
-								"variables": "{\n\t\"request\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "getQueryRuntimeTimeSeriesForGroups",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getQueryRuntimeTimeSeriesForGroups($request: QueryRuntimeTimeSeriesRequestType!) {\n  getQueryRuntimeTimeSeriesForGroups(request: $request) {\n    __typename\n    queryGroupField\n    queryGroupValues\n    # timeSeriesList\n    timeBucketSize\n    timeBucketAggregationFunction\n  }\n}",
-								"variables": "{\n\t\"request\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "getTopQueryGroups",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getTopQueryGroups($request: TopQueryGroupsRequestType!) {\n  getTopQueryGroups(request: $request) {\n    __typename\n    total\n    # topQueryGroups\n  }\n}",
-								"variables": "{\n\t\"request\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
 					"name": "getAggregatedQueries",
 					"request": {
 						"method": "POST",
@@ -690,7 +394,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getQueryRcas($incidentId: UUID!) {\n  getQueryRcas(incidentId: $incidentId) {\n    __typename\n    tableMcon # MCON of affected table\n    groupId # Identifier for a grouping of like/same queries\n    timestamp # Time RCA was executed\n    type # Type of query RCA\n    rcaData # Get full rca data\n  }\n}",
+								"query": "query getQueryRcas($incidentId: UUID!) {\n  getQueryRcas(incidentId: $incidentId) {\n    __typename\n    tableMcon # MCON of affected table\n    groupId # Identifier for a grouping of like/same queries\n    timestamp # Time RCA was executed\n    type # Type of query RCA\n  }\n}",
 								"variables": "{\n\t\"incidentId\": null\n}"
 							}
 						},
@@ -764,7 +468,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getNotificationSettings($monitorLabels: [String]) {\n  getNotificationSettings(monitorLabels: $monitorLabels) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    name # Resource name for notifications created through notifications-as-code\n    isTemplateManaged # Is this monitor managed by a configuration template (notifications-as-code)?\n    namespace # Namespace of notification, used for notifications-as-code\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
+								"query": "query getNotificationSettings($monitorLabels: [String]) {\n  getNotificationSettings(monitorLabels: $monitorLabels) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
 								"variables": "{\n\t\"monitorLabels\": null\n}"
 							}
 						},
@@ -1023,7 +727,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getDbtConnections {\n  getDbtConnections {\n    __typename\n    id\n    uuid\n    type\n    subtype # Subtype of a plugin connection\n    # account\n    # warehouse\n    # biContainer\n    # etlContainer\n    jobTypes\n    credentialsS3Key\n    integrationGatewayCredentialsKey\n    data\n    createdOn\n    updatedOn\n    isActive\n    disabledOn\n    # dbtProjects # dbt connection\n    # connectionIdentifier\n    # connectionIdentifiers\n    # jobErrors # Errors related to the connection\n  }\n}",
+								"query": "query getDbtConnections {\n  getDbtConnections {\n    __typename\n    id\n    uuid\n    type\n    # account\n    # warehouse\n    # biContainer\n    # etlContainer\n    jobTypes\n    credentialsS3Key\n    integrationGatewayCredentialsKey\n    data\n    createdOn\n    updatedOn\n    # dbtProjects # dbt connection\n    # connectionIdentifier\n    # connectionIdentifiers\n    # jobErrors # Errors related to the connection\n  }\n}",
 								"variables": "{\n\n}"
 							}
 						},
@@ -1599,6 +1303,43 @@
 					"response": []
 				},
 				{
+					"name": "getDocs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getDocs($docMcon: String, $linkedMcon: String, $offset: Int, $before: String, $after: String, $first: Int, $last: Int) {\n  getDocs(\n    docMcon: $docMcon\n    linkedMcon: $linkedMcon\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
+								"variables": "{\n\t\"docMcon\": null,\n\t\"linkedMcon\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Get docs"
+					},
+					"response": []
+				},
+				{
 					"name": "getUnifiedUsers",
 					"request": {
 						"method": "POST",
@@ -1726,8 +1467,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query exportMonteCarloConfigTemplates($monitorUuids: [UUID], $notificationUuids: [UUID], $exportName: Boolean) {\n  exportMonteCarloConfigTemplates(\n    monitorUuids: $monitorUuids\n    notificationUuids: $notificationUuids\n    exportName: $exportName\n  ) {\n    __typename\n    configTemplateAsYaml # Config Template as YAML\n    errors # Errors encountered\n  }\n}",
-								"variables": "{\n\t\"monitorUuids\": null,\n\t\"notificationUuids\": null,\n\t\"exportName\": null\n}"
+								"query": "query exportMonteCarloConfigTemplates($monitorUuids: [UUID!]) {\n  exportMonteCarloConfigTemplates(monitorUuids: $monitorUuids) {\n    __typename\n    configTemplateAsYaml # Config Template as YAML\n    errors # Errors encountered\n  }\n}",
+								"variables": "{\n\t\"monitorUuids\": [null]\n}"
 							}
 						},
 						"url": {
@@ -1743,43 +1484,6 @@
 							]
 						},
 						"description": "Export Monte Carlo config templates from existing custom monitors"
-					},
-					"response": []
-				},
-				{
-					"name": "getMonteCarloConfigTemplateUpdateState",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getMonteCarloConfigTemplateUpdateState($updateUuid: UUID!) {\n  getMonteCarloConfigTemplateUpdateState(updateUuid: $updateUuid) {\n    __typename\n    # resourceModifications # List of resource modifications\n    changesApplied # Changes applied?\n    errorsAsJson # Errors encountered\n    warningsAsJson # Warnings encountered\n    infoAsJson # Informational messages\n    state # State of the async update\n  }\n}",
-								"variables": "{\n\t\"updateUuid\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Get result of async Monte Carlo config template update"
 					},
 					"response": []
 				},
@@ -1948,8 +1652,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query performFieldHealthSampling($field: String!, $metric: String!, $monitorUuid: UUID!, $startTime: DateTime!, $endTime: DateTime!, $maxRows: Int, $eventUuid: UUID) {\n  performFieldHealthSampling(\n    field: $field\n    metric: $metric\n    monitorUuid: $monitorUuid\n    startTime: $startTime\n    endTime: $endTime\n    maxRows: $maxRows\n    eventUuid: $eventUuid\n  ) {\n    __typename\n    columns\n    rows\n    samplingDisabled\n    normalRecordsQuery # This is null for summary statistics such as mean, min, max, and percentiles\n    anomalousRecordsQuery\n  }\n}",
-								"variables": "{\n\t\"field\": null,\n\t\"metric\": null,\n\t\"monitorUuid\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"maxRows\": null,\n\t\"eventUuid\": null\n}"
+								"query": "query performFieldHealthSampling($field: String!, $metric: String!, $monitorUuid: UUID!, $startTime: DateTime!, $endTime: DateTime!, $maxRows: Int) {\n  performFieldHealthSampling(\n    field: $field\n    metric: $metric\n    monitorUuid: $monitorUuid\n    startTime: $startTime\n    endTime: $endTime\n    maxRows: $maxRows\n  ) {\n    __typename\n    columns\n    rows\n    samplingDisabled\n  }\n}",
+								"variables": "{\n\t\"field\": null,\n\t\"metric\": null,\n\t\"monitorUuid\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"maxRows\": null\n}"
 							}
 						},
 						"url": {
@@ -2059,7 +1763,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getSensitivity($mcon: String, $eventType: String, $monitorUuid: UUID) {\n  getSensitivity(mcon: $mcon, eventType: $eventType, monitorUuid: $monitorUuid) {\n    __typename\n    level # Low, medium or high sensitivity\n  }\n}",
+								"query": "query getSensitivity($mcon: String, $eventType: String, $monitorUuid: UUID) {\n  getSensitivity(mcon: $mcon, eventType: $eventType, monitorUuid: $monitorUuid) {\n    __typename\n    minDelay # Minimum delay from last update (in sec) - Deprecated\n    level # Low, medium or high sensitivity\n  }\n}",
 								"variables": "{\n\t\"mcon\": null,\n\t\"eventType\": null,\n\t\"monitorUuid\": null\n}"
 							}
 						},
@@ -2392,7 +2096,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getMonitors($monitorTypes: [UserDefinedMonitors], $statusTypes: [MonitorStatusType], $descriptionFieldOrTable: [String], $domainId: UUID, $uuids: [String], $createdByFilters: CreatedByFilters, $labels: [String], $search: [String], $searchFields: [UserDefinedMonitorSearchFields], $namespaces: [String], $isTemplateManaged: Boolean, $mcons: [String], $orderBy: String, $limit: Int, $offset: Int) {\n  getMonitors(\n    monitorTypes: $monitorTypes\n    statusTypes: $statusTypes\n    descriptionFieldOrTable: $descriptionFieldOrTable\n    domainId: $domainId\n    uuids: $uuids\n    createdByFilters: $createdByFilters\n    labels: $labels\n    search: $search\n    searchFields: $searchFields\n    namespaces: $namespaces\n    isTemplateManaged: $isTemplateManaged\n    mcons: $mcons\n    orderBy: $orderBy\n    limit: $limit\n    offset: $offset\n  ) {\n    __typename\n    uuid # Unique identifier for monitors\n    monitorType # Type of monitor\n    createdTime # Monitor creation time (UTC)\n    lastUpdateTime # Monitor last update time (UTC)\n    creatorId # Email of user who created the monitor\n    updaterId # Email of user who last updated the monitor\n    resourceId # Warehouse Unique Identifier\n    entities # Full table IDs for monitored tables/views\n    entityMcons # MCONs for monitored tables/views\n    scheduleType # Monitor scheduling type\n    name # Monitor/rule name, default or user-defined\n    ruleName # DEPRECATED: Rule name, default or user-defined, null for monitors. Use name instead.\n    description # Monitor user-defined name\n    notes # Notes defined on this monitor\n    labels # List of tags used to filter a monitor\n    severity # Default severity for incidents involving this monitor\n    # notificationSettings # Notification channels that match the monitor\n    notifyRuleRunFailure # Whether audiences will be notified when the rule fails to execute\n    isSnoozeable # Whether the monitor can be snoozed\n    isPaused # Whether the monitor is currently paused\n    isTemplateManaged # Whether the monitor was created from through monitor-as-code\n    namespace # The monitor-as-code namespace used when creating the monitor\n    nextExecutionTime # The next time (UTC) in which the monitor will run\n    prevExecutionTime # The last time (UTC) in which the monitor ran\n    isTransitioningDataProvider\n    # scheduleConfig\n    sevenDaysIncidentCount # Number of incidents in the past 7 days\n    # incidentCountHistory # Number of incidents per day for the past 30 days\n    weeklyIncidentCountChangeRate # Change in percentage between between last 7 days and the 7 days before.\n    monitorFields # Field/s to monitor\n    monitorTimeAxisFieldName # The name of the table/view field used for establishing the table time\n    monitorTimeAxisFieldType # Type of time axis field used for establishing the table time\n    whereCondition # Comparison predicate for the monitor SQL query\n    usePartitionClause # Whether to use automatic partition filter in query\n    segmentedExpressions # Fields or expressions used to segment the monitored field (currently supports one such value)\n    historyDays # Number of lookback days for each monitor execution\n    # selectExpressions # Monitor select expression\n    aggTimeInterval # For field health and dimension monitoring, the aggregation time interval to use. Either HOUR or DAY\n    hasCustomRuleName # Whether the monitor has a name given by the monitor creator\n    ruleDescription # **DEPRECATED**\n    # ruleComparisons\n    ruleNotes # **DEPRECATED**\n    ruleVariables # variables defined for the sql rule\n    isSnoozed # Whether the monitor is currently snoozed\n    snoozeUntilTime # If snoozed, the wake up time in UTC\n    slackSnoozeUser # Slack user who snoozed rule\n    conditionalSnooze # Whether the monitor is conditionally snoozed\n    breachRate # Percentage of last 10 runs in which the monitor's condition was breached\n    intervalMinutes # Interval between monitor runs, in minutes\n    monitorRunStatus # Monitor run status\n    monitorConfigurationStatus # Monitor configuration status\n    monitorTrainingStatus # Monitor training status\n    monitorStatus # Consolidated monitor status\n    exceptions # Exceptions if any occurred during the last run\n  }\n}",
+								"query": "query getMonitors($monitorTypes: [UserDefinedMonitors], $statusTypes: [MonitorStatusType], $descriptionFieldOrTable: [String], $domainId: UUID, $uuids: [String], $createdByFilters: CreatedByFilters, $labels: [String], $search: [String], $searchFields: [UserDefinedMonitorSearchFields], $namespaces: [String], $isTemplateManaged: Boolean, $mcons: [String], $orderBy: String, $limit: Int, $offset: Int) {\n  getMonitors(\n    monitorTypes: $monitorTypes\n    statusTypes: $statusTypes\n    descriptionFieldOrTable: $descriptionFieldOrTable\n    domainId: $domainId\n    uuids: $uuids\n    createdByFilters: $createdByFilters\n    labels: $labels\n    search: $search\n    searchFields: $searchFields\n    namespaces: $namespaces\n    isTemplateManaged: $isTemplateManaged\n    mcons: $mcons\n    orderBy: $orderBy\n    limit: $limit\n    offset: $offset\n  ) {\n    __typename\n    uuid # Unique identifier for monitors\n    monitorType # Type of monitor\n    createdTime # Monitor creation time (UTC)\n    lastUpdateTime # Monitor last update time (UTC)\n    creatorId # Email of user who created the monitor\n    updaterId # Email of user who last updated the monitor\n    resourceId # Warehouse Unique Identifier\n    entities # Full table IDs for monitored tables/views\n    entityMcons # MCONs for monitored tables/views\n    scheduleType # Monitor scheduling type\n    name # Monitor/rule name, default or user-defined\n    ruleName # DEPRECATED: Rule name, default or user-defined, null for monitors. Use name instead.\n    description # Monitor user-defined name\n    notes # Notes defined on this monitor\n    labels # List of tags used to filter a monitor\n    severity # Default severity for incidents involving this monitor\n    # notificationSettings # Notification channels that match the monitor\n    notifyRuleRunFailure # Whether audiences will be notified when the rule fails to execute\n    isSnoozeable # Whether the monitor can be snoozed\n    isPaused # Whether the monitor is currently paused\n    isTemplateManaged # Whether the monitor was created from through monitor-as-code\n    namespace # The monitor-as-code namespace used when creating the monitor\n    nextExecutionTime # The next time (UTC) in which the monitor will run\n    prevExecutionTime # The last time (UTC) in which the monitor ran\n    isTransitioningDataProvider\n    # scheduleConfig\n    sevenDaysIncidentCount # Number of incidents in the past 7 days\n    # incidentCountHistory # Number of incidents per day for the past 30 days\n    weeklyIncidentCountChangeRate # Change in percentage between between last 7 days and the 7 days before.\n    monitorFields # Field/s to monitor\n    monitorTimeAxisFieldName # The name of the table/view field used for establishing the table time\n    monitorTimeAxisFieldType # Type of time axis field used for establishing the table time\n    whereCondition # Comparison predicate for the monitor SQL query\n    usePartitionClause # Whether to use automatic partition filter in query\n    segmentedExpressions # Fields or expressions used to segment the monitored field (currently supports one such value)\n    historyDays # Number of lookback days for each monitor execution\n    # selectExpressions # Monitor select expression\n    aggTimeInterval # For field health and dimension monitoring, the aggregation time interval to use. Either HOUR or DAY\n    hasCustomRuleName # Whether the monitor has a name given by the monitor creator\n    ruleDescription # **DEPRECATED**\n    # ruleComparisons\n    ruleNotes # **DEPRECATED**\n    ruleVariables # variables defined for the sql rule\n    isSnoozed # Whether the monitor is currently snoozed\n    snoozeUntilTime # If snoozed, the wake up time in UTC\n    slackSnoozeUser # Slack user who snoozed rule\n    conditionalSnooze # Whether the monitor is conditionally snoozed\n    breachRate # Percentage of last 10 runs in which the monitor's condition was breached\n    intervalMinutes # Interval between monitor runs, in minutes\n    monitorStatus # Monitor Status\n    exceptions # Exceptions if any occurred during the last run\n  }\n}",
 								"variables": "{\n\t\"monitorTypes\": null,\n\t\"statusTypes\": null,\n\t\"descriptionFieldOrTable\": null,\n\t\"domainId\": null,\n\t\"uuids\": null,\n\t\"createdByFilters\": null,\n\t\"labels\": null,\n\t\"search\": null,\n\t\"searchFields\": null,\n\t\"namespaces\": null,\n\t\"isTemplateManaged\": null,\n\t\"mcons\": null,\n\t\"orderBy\": null,\n\t\"limit\": null,\n\t\"offset\": null\n}"
 							}
 						},
@@ -2409,80 +2113,6 @@
 							]
 						},
 						"description": "List of monitors"
-					},
-					"response": []
-				},
-				{
-					"name": "getMonitorQueries",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getMonitorQueries($monitorUuid: UUID!, $bootstrap: Boolean, $formatSql: Boolean, $stripMetadataComment: Boolean) {\n  getMonitorQueries(\n    monitorUuid: $monitorUuid\n    bootstrap: $bootstrap\n    formatSql: $formatSql\n    stripMetadataComment: $stripMetadataComment\n  ) {\n    __typename\n    queries # The SQL queries executed by the monitor\n  }\n}",
-								"variables": "{\n\t\"monitorUuid\": null,\n\t\"bootstrap\": null,\n\t\"formatSql\": null,\n\t\"stripMetadataComment\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "testMonitorQueries",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query testMonitorQueries($monitorUuid: UUID!) {\n  testMonitorQueries(monitorUuid: $monitorUuid) {\n    __typename\n    # queries # The SQL queries results\n  }\n}",
-								"variables": "{\n\t\"monitorUuid\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": null
 					},
 					"response": []
 				},
@@ -2614,7 +2244,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getCustomRule($ruleId: UUID, $descriptionContains: String, $customSqlContains: String) {\n  getCustomRule(\n    ruleId: $ruleId\n    descriptionContains: $descriptionContains\n    customSqlContains: $customSqlContains\n  ) {\n    __typename\n    id # The ID of the object.\n    uuid\n    accountUuid # Customer account id\n    projects # Projects associated with the monitor\n    datasets # Datasets associated with the monitor\n    description\n    notes\n    labels # Monitor labels\n    isTemplateManaged # Is this monitor managed by a configuration template (monitors-as-code)?\n    namespace # Namespace of rule, used for monitors-as-code\n    severity # The default severity for incidents involving this monitor\n    ruleType\n    warehouseUuid\n    # comparisons\n    intervalMinutes\n    intervalCrontab\n    startTime\n    timezone\n    creatorId # The email of the user that created the monitor\n    updaterId # The email of the user that last updated the monitor\n    prevExecutionTime\n    nextExecutionTime\n    lastCheckTimestamp\n    createdTime\n    updatedTime\n    isDeleted\n    snoozeUntilTime\n    slackSnoozeUser # The slack user who last snoozed the rule\n    conditionalSnooze\n    eventRollupUntilChanged # If true, roll up events until the condition changes\n    eventRollupCount # The number of events to roll up into a single incident\n    notifyRuleRunFailure # Flag to indicate whether or not to send a notification if the rule fails to run\n    dcScheduleUuid\n    dataCollectionDcScheduleUuid\n    customSql\n    override\n    variables\n    fields # Fields used in predefined SQL rules\n    # generatedBy\n    entities # Tables referenced in query\n    ruleName # Name of rule, must be unique per account, used for rule identityresolution for monitors-as-code, just a random UUID by default\n    sequenceNumber # Last sequence number, used by growth volume SLIs\n    systemSnoozeUntilTime # Snoozes rule execution, but not available to users as snooze_until_time\n    queryResultType # Specifies the expected result type of the custom SQL query (e.g. a single numeric value)\n    customSamplingSql # Custom query to sample the data on breach\n    # generatedRules\n    entityMcons # MCONs for monitored tables/views\n    renderedCustomSql\n    # scheduleConfig\n    # dataCollectionScheduleConfig\n    # notificationSettings\n    isSnoozed # True if rule is currently snoozed\n    # fieldMetric # Field metric parameters (if query generated by getFieldMetricQuery)\n    # fieldQueryParameters # Field query parameters (if query generated by getFieldQuery)\n  }\n}",
+								"query": "query getCustomRule($ruleId: UUID, $descriptionContains: String, $customSqlContains: String) {\n  getCustomRule(\n    ruleId: $ruleId\n    descriptionContains: $descriptionContains\n    customSqlContains: $customSqlContains\n  ) {\n    __typename\n    id # The ID of the object.\n    uuid\n    accountUuid # Customer account id\n    projects # Projects associated with the monitor\n    datasets # Datasets associated with the monitor\n    description\n    notes\n    labels # Monitor labels\n    isTemplateManaged # Is this monitor managed by a configuration template (monitors-as-code)?\n    namespace # Namespace of rule, used for monitors-as-code\n    severity # The default severity for incidents involving this monitor\n    ruleType\n    warehouseUuid\n    # comparisons\n    intervalMinutes\n    intervalCrontab\n    startTime\n    timezone\n    creatorId # The email of the user that created the monitor\n    updaterId # The email of the user that last updated the monitor\n    prevExecutionTime\n    nextExecutionTime\n    lastCheckTimestamp\n    createdTime\n    updatedTime\n    isDeleted\n    snoozeUntilTime\n    slackSnoozeUser # The slack user who last snoozed the rule\n    conditionalSnooze\n    eventRollupUntilChanged # If true, roll up events until the condition changes\n    eventRollupCount # The number of events to roll up into a single incident\n    notifyRuleRunFailure # Flag to indicate whether or not to send a notification if the rule fails to run\n    dcScheduleUuid\n    dataCollectionDcScheduleUuid\n    customSql\n    override\n    variables\n    # generatedBy\n    entities # Tables referenced in query\n    ruleName # Name of rule, must be unique per account, used for rule identityresolution for monitors-as-code, just a random UUID by default\n    sequenceNumber # Last sequence number, used by growth volume SLIs\n    systemSnoozeUntilTime # Snoozes rule execution, but not available to users as snooze_until_time\n    queryResultType # Specifies the expected result type of the custom SQL query (e.g. a single numeric value)\n    customSamplingSql # Custom query to sample the data on breach\n    # generatedRules\n    entityMcons # MCONs for monitored tables/views\n    renderedCustomSql\n    # scheduleConfig\n    # dataCollectionScheduleConfig\n    # notificationSettings\n    isSnoozed # True if rule is currently snoozed\n    # fieldMetric # Field metric parameters (if query generated by createFieldMetricParameters)\n  }\n}",
 								"variables": "{\n\t\"ruleId\": null,\n\t\"descriptionContains\": null,\n\t\"customSqlContains\": null\n}"
 							}
 						},
@@ -2651,7 +2281,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getCustomRules($entityMcons: [String], $metadataKeys: [String], $offset: Int, $before: String, $after: String, $first: Int, $last: Int, $ruleType: CustomRuleModelRuleType, $warehouseUuid: UUID) {\n  getCustomRules(\n    entityMcons: $entityMcons\n    metadataKeys: $metadataKeys\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    ruleType: $ruleType\n    warehouseUuid: $warehouseUuid\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
+								"query": "query getCustomRules($entityMcons: [String], $metadataKeys: [String], $offset: Int, $before: String, $after: String, $first: Int, $last: Int, $ruleType: String, $warehouseUuid: UUID) {\n  getCustomRules(\n    entityMcons: $entityMcons\n    metadataKeys: $metadataKeys\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    ruleType: $ruleType\n    warehouseUuid: $warehouseUuid\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
 								"variables": "{\n\t\"entityMcons\": null,\n\t\"metadataKeys\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"ruleType\": null,\n\t\"warehouseUuid\": null\n}"
 							}
 						},
@@ -2688,7 +2318,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getGeneratedRules($generatedByUuid: UUID) {\n  getGeneratedRules(generatedByUuid: $generatedByUuid) {\n    __typename\n    id # The ID of the object.\n    uuid\n    accountUuid # Customer account id\n    projects # Projects associated with the monitor\n    datasets # Datasets associated with the monitor\n    description\n    notes\n    labels # Monitor labels\n    isTemplateManaged # Is this monitor managed by a configuration template (monitors-as-code)?\n    namespace # Namespace of rule, used for monitors-as-code\n    severity # The default severity for incidents involving this monitor\n    ruleType\n    warehouseUuid\n    # comparisons\n    intervalMinutes\n    intervalCrontab\n    startTime\n    timezone\n    creatorId # The email of the user that created the monitor\n    updaterId # The email of the user that last updated the monitor\n    prevExecutionTime\n    nextExecutionTime\n    lastCheckTimestamp\n    createdTime\n    updatedTime\n    isDeleted\n    snoozeUntilTime\n    slackSnoozeUser # The slack user who last snoozed the rule\n    conditionalSnooze\n    eventRollupUntilChanged # If true, roll up events until the condition changes\n    eventRollupCount # The number of events to roll up into a single incident\n    notifyRuleRunFailure # Flag to indicate whether or not to send a notification if the rule fails to run\n    dcScheduleUuid\n    dataCollectionDcScheduleUuid\n    customSql\n    override\n    variables\n    fields # Fields used in predefined SQL rules\n    # generatedBy\n    entities # Tables referenced in query\n    ruleName # Name of rule, must be unique per account, used for rule identityresolution for monitors-as-code, just a random UUID by default\n    sequenceNumber # Last sequence number, used by growth volume SLIs\n    systemSnoozeUntilTime # Snoozes rule execution, but not available to users as snooze_until_time\n    queryResultType # Specifies the expected result type of the custom SQL query (e.g. a single numeric value)\n    customSamplingSql # Custom query to sample the data on breach\n    # generatedRules\n    entityMcons # MCONs for monitored tables/views\n    renderedCustomSql\n    # scheduleConfig\n    # dataCollectionScheduleConfig\n    # notificationSettings\n    isSnoozed # True if rule is currently snoozed\n    # fieldMetric # Field metric parameters (if query generated by getFieldMetricQuery)\n    # fieldQueryParameters # Field query parameters (if query generated by getFieldQuery)\n  }\n}",
+								"query": "query getGeneratedRules($generatedByUuid: UUID) {\n  getGeneratedRules(generatedByUuid: $generatedByUuid) {\n    __typename\n    id # The ID of the object.\n    uuid\n    accountUuid # Customer account id\n    projects # Projects associated with the monitor\n    datasets # Datasets associated with the monitor\n    description\n    notes\n    labels # Monitor labels\n    isTemplateManaged # Is this monitor managed by a configuration template (monitors-as-code)?\n    namespace # Namespace of rule, used for monitors-as-code\n    severity # The default severity for incidents involving this monitor\n    ruleType\n    warehouseUuid\n    # comparisons\n    intervalMinutes\n    intervalCrontab\n    startTime\n    timezone\n    creatorId # The email of the user that created the monitor\n    updaterId # The email of the user that last updated the monitor\n    prevExecutionTime\n    nextExecutionTime\n    lastCheckTimestamp\n    createdTime\n    updatedTime\n    isDeleted\n    snoozeUntilTime\n    slackSnoozeUser # The slack user who last snoozed the rule\n    conditionalSnooze\n    eventRollupUntilChanged # If true, roll up events until the condition changes\n    eventRollupCount # The number of events to roll up into a single incident\n    notifyRuleRunFailure # Flag to indicate whether or not to send a notification if the rule fails to run\n    dcScheduleUuid\n    dataCollectionDcScheduleUuid\n    customSql\n    override\n    variables\n    # generatedBy\n    entities # Tables referenced in query\n    ruleName # Name of rule, must be unique per account, used for rule identityresolution for monitors-as-code, just a random UUID by default\n    sequenceNumber # Last sequence number, used by growth volume SLIs\n    systemSnoozeUntilTime # Snoozes rule execution, but not available to users as snooze_until_time\n    queryResultType # Specifies the expected result type of the custom SQL query (e.g. a single numeric value)\n    customSamplingSql # Custom query to sample the data on breach\n    # generatedRules\n    entityMcons # MCONs for monitored tables/views\n    renderedCustomSql\n    # scheduleConfig\n    # dataCollectionScheduleConfig\n    # notificationSettings\n    isSnoozed # True if rule is currently snoozed\n    # fieldMetric # Field metric parameters (if query generated by createFieldMetricParameters)\n  }\n}",
 								"variables": "{\n\t\"generatedByUuid\": null\n}"
 							}
 						},
@@ -2873,7 +2503,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getNotificationSettingsForRulesWith($ruleType: String!, $warehouseUuid: UUID!, $fullTableIds: [String], $labelNames: [String]) {\n  getNotificationSettingsForRulesWith(\n    ruleType: $ruleType\n    warehouseUuid: $warehouseUuid\n    fullTableIds: $fullTableIds\n    labelNames: $labelNames\n  ) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    name # Resource name for notifications created through notifications-as-code\n    isTemplateManaged # Is this monitor managed by a configuration template (notifications-as-code)?\n    namespace # Namespace of notification, used for notifications-as-code\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
+								"query": "query getNotificationSettingsForRulesWith($ruleType: String!, $warehouseUuid: UUID!, $fullTableIds: [String], $labelNames: [String]) {\n  getNotificationSettingsForRulesWith(\n    ruleType: $ruleType\n    warehouseUuid: $warehouseUuid\n    fullTableIds: $fullTableIds\n    labelNames: $labelNames\n  ) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
 								"variables": "{\n\t\"ruleType\": null,\n\t\"warehouseUuid\": null,\n\t\"fullTableIds\": null,\n\t\"labelNames\": null\n}"
 							}
 						},
@@ -2912,43 +2542,6 @@
 							"graphql": {
 								"query": "query getFieldMetricQuery($fieldMetric: FieldMetricInput!) {\n  getFieldMetricQuery(fieldMetric: $fieldMetric) {\n    __typename\n    sqlQuery # SQL query for the metric\n  }\n}",
 								"variables": "{\n\t\"fieldMetric\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Build Field Metric query from parameters"
-					},
-					"response": []
-				},
-				{
-					"name": "getFieldQuery",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getFieldQuery($fieldQueryParameters: FieldQueryParametersInput!) {\n  getFieldQuery(fieldQueryParameters: $fieldQueryParameters) {\n    __typename\n    sqlQuery # SQL query\n  }\n}",
-								"variables": "{\n\t\"fieldQueryParameters\": null\n}"
 							}
 						},
 						"url": {
@@ -3149,6 +2742,80 @@
 							]
 						},
 						"description": "Name (id) of insight to fetch"
+					},
+					"response": []
+				},
+				{
+					"name": "getLineageNode",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getLineageNode($objectType: String!, $objectId: String!, $resourceId: UUID, $resourceName: String) {\n  getLineageNode(\n    objectType: $objectType\n    objectId: $objectId\n    resourceId: $resourceId\n    resourceName: $resourceName\n  ) {\n    __typename\n    nodeId # Lineage node id, to be deprecated in favor of MCONs\n    mcon # Monte Carlo object name\n    accountId # Customer account id\n    resourceId # Resource containing this object (warehouse, Tableau account, etc)\n    objectType # Object type (table, view, different types of reports, etc)\n    name # Object name (table name, report name, etc)\n    displayName # Friendly display name\n    version # The version of the job that generated this record\n    jobTs # The timestamp of the job run that generated this record\n    extra # Information specific to each object type\n    createdTime # When the node was first created\n    # lastUpdateUser # Who last updated the node\n    lastUpdateTime # When the property was node updated\n  }\n}",
+								"variables": "{\n\t\"objectType\": null,\n\t\"objectId\": null,\n\t\"resourceId\": null,\n\t\"resourceName\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Retrieve a lineage node"
+					},
+					"response": []
+				},
+				{
+					"name": "getLineageEdge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getLineageEdge($source: NodeInput, $destination: NodeInput) {\n  getLineageEdge(source: $source, destination: $destination) {\n    __typename\n    edgeId # Edge id (hash)\n    # source # Source node MCON, upstream in the graph\n    # dest # Destination node MCON, downstream in the graph\n    accountId # Customer account id\n    version # The version of the job that generated this record\n    jobTs # The timestamp of the job run that generated this record\n    expireAt # Timestamp after when this edge is considered expired\n    createdTime # When the edge was first created\n    # lastUpdateUser # Who last updated the edge\n    lastUpdateTime # When the edge was last updated\n  }\n}",
+								"variables": "{\n\t\"source\": null,\n\t\"destination\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Retrieve a lineage edge"
 					},
 					"response": []
 				},
@@ -3983,7 +3650,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getNotificationSettingsForMonitorsWith($monitorType: String!, $labelNames: [String], $mcon: String) {\n  getNotificationSettingsForMonitorsWith(\n    monitorType: $monitorType\n    labelNames: $labelNames\n    mcon: $mcon\n  ) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    name # Resource name for notifications created through notifications-as-code\n    isTemplateManaged # Is this monitor managed by a configuration template (notifications-as-code)?\n    namespace # Namespace of notification, used for notifications-as-code\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
+								"query": "query getNotificationSettingsForMonitorsWith($monitorType: String!, $labelNames: [String], $mcon: String) {\n  getNotificationSettingsForMonitorsWith(\n    monitorType: $monitorType\n    labelNames: $labelNames\n    mcon: $mcon\n  ) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
 								"variables": "{\n\t\"monitorType\": null,\n\t\"labelNames\": null,\n\t\"mcon\": null\n}"
 							}
 						},
@@ -4427,7 +4094,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getIncidentWarehouseTables($incidentId: UUID!) {\n  getIncidentWarehouseTables(incidentId: $incidentId) {\n    __typename\n    id # The ID of the object.\n    tableId\n    fullTableId\n    # warehouse\n    discoveredTime\n    friendlyName\n    location\n    projectName\n    dataset\n    description # (Deprecated) Use `description` from `CatalogObjectMetadataModel` \n    tableType\n    isEncrypted\n    createdTime\n    lastModified\n    viewQuery\n    labels\n    path\n    priority\n    tracked\n    status\n    freshnessAnomaly\n    sizeAnomaly\n    freshnessSizeAnomaly\n    metricAnomaly\n    dynamicTable\n    isDeleted\n    deletedAt\n    lastObserved\n    isExcluded\n    dataProvider\n    mcon # The table's MCON (MC Object Name)\n    # anomalies\n    # tags\n    # versions\n    # events\n    # monitors # Table related to monitor\n    # dbtNodes # Associated table\n    # dbtRunSteps # Associated table\n    # fivetranconnectormodelSet\n    # thresholds # Section describing various anomaly thresholds for the table\n    # getThresholds # Section describing various anomaly thresholds for the table\n    schemaChangeCount\n    statusScalar\n    nodeId\n    isPartialDateRange\n    # lastUpdates # List of table updates\n    # lastUpdatesV2 # List of table updates\n    # totalRowCounts # List of total row count values for the table\n    # totalByteCounts # List of total byte count values for the table\n    # writeThroughput # List of latest write throughput in bytes, at most 10000 data points.\n    # objectsDeleted # List of latest objects deleted events, at most 10000 data points.\n    # maintenanceWindows # List of windows in which the training is ignored\n    # checkTableMetricsExistence # List of metric name and whether they exist or not on a table\n    isMuted # No incidents will be created for this table if muted.\n    mutedEventTypes # Muting is active for the specified event types.\n    # tableStats # Stats for the table\n    # objectProperties\n    isTransitioningDataProvider\n    # tableCapabilities # Capabilities for the table\n    # partitionKeys # Partition key information\n    # usageStats # Section describing various table usage stats\n  }\n}",
+								"query": "query getIncidentWarehouseTables($incidentId: UUID!) {\n  getIncidentWarehouseTables(incidentId: $incidentId) {\n    __typename\n    id # The ID of the object.\n    tableId\n    fullTableId\n    # warehouse\n    discoveredTime\n    friendlyName\n    description\n    location\n    projectName\n    dataset\n    tableType\n    isEncrypted\n    createdTime\n    lastModified\n    viewQuery\n    labels\n    path\n    priority\n    tracked\n    status\n    freshnessAnomaly\n    sizeAnomaly\n    freshnessSizeAnomaly\n    metricAnomaly\n    dynamicTable\n    isDeleted\n    lastObserved\n    isExcluded\n    dataProvider\n    mcon # The table's MCON (MC Object Name)\n    # anomalies\n    # tags\n    # versions\n    # events\n    # monitors # Table related to monitor\n    # dbtNodes # Associated table\n    # dbtRunSteps # Associated table\n    # fivetranconnectormodelSet\n    # usageStats # Section describing various table usage stats\n    # thresholds # Section describing various anomaly thresholds for the table\n    # getThresholds # Section describing various anomaly thresholds for the table\n    schemaChangeCount\n    statusScalar\n    nodeId\n    isPartialDateRange\n    # lastUpdates # List of table updates\n    # lastUpdatesV2 # List of table updates\n    # totalRowCounts # List of total row count values for the table\n    # totalByteCounts # List of total byte count values for the table\n    # writeThroughput # List of latest write throughput in bytes, at most 10000 data points.\n    # objectsDeleted # List of latest objects deleted events, at most 10000 data points.\n    # maintenanceWindows # List of windows in which the training is ignored\n    # checkTableMetricsExistence # List of metric name and whether they exist or not on a table\n    isMuted # No incidents will be created for this table if muted.\n    mutedEventTypes # Muting is active for the specified event types.\n    # tableStats # Stats for the table\n    # objectProperties\n    isTransitioningDataProvider\n    # tableCapabilities # Capabilities for the table\n    # partitionKeys # Partition key information\n  }\n}",
 								"variables": "{\n\t\"incidentId\": null\n}"
 							}
 						},
@@ -4649,8 +4316,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getEvents($dwId: UUID, $fullTableId: String, $eventType: String, $eventTypes: [String], $dataset: String, $tablesOlderThanDays: Int, $eventStates: [String], $excludeState: String, $startTime: DateTime, $endTime: DateTime, $incidentId: UUID, $includeTimelineEvents: Boolean, $includeAnomalyEvents: Boolean, $descOrder: Boolean, $offset: Int, $before: String, $after: String, $first: Int, $last: Int) {\n  getEvents(\n    dwId: $dwId\n    fullTableId: $fullTableId\n    eventType: $eventType\n    eventTypes: $eventTypes\n    dataset: $dataset\n    tablesOlderThanDays: $tablesOlderThanDays\n    eventStates: $eventStates\n    excludeState: $excludeState\n    startTime: $startTime\n    endTime: $endTime\n    incidentId: $incidentId\n    includeTimelineEvents: $includeTimelineEvents\n    includeAnomalyEvents: $includeAnomalyEvents\n    descOrder: $descOrder\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
-								"variables": "{\n\t\"dwId\": null,\n\t\"fullTableId\": null,\n\t\"eventType\": null,\n\t\"eventTypes\": null,\n\t\"dataset\": null,\n\t\"tablesOlderThanDays\": null,\n\t\"eventStates\": null,\n\t\"excludeState\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"incidentId\": null,\n\t\"includeTimelineEvents\": null,\n\t\"includeAnomalyEvents\": null,\n\t\"descOrder\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null\n}"
+								"query": "query getEvents($dwId: UUID, $fullTableId: String, $eventType: String, $eventTypes: [String], $dataset: String, $tablesOlderThanDays: Int, $eventStates: [String], $excludeState: String, $startTime: DateTime, $endTime: DateTime, $incidentId: UUID, $includeTimelineEvents: Boolean, $includeAnomalyEvents: Boolean, $offset: Int, $before: String, $after: String, $first: Int, $last: Int) {\n  getEvents(\n    dwId: $dwId\n    fullTableId: $fullTableId\n    eventType: $eventType\n    eventTypes: $eventTypes\n    dataset: $dataset\n    tablesOlderThanDays: $tablesOlderThanDays\n    eventStates: $eventStates\n    excludeState: $excludeState\n    startTime: $startTime\n    endTime: $endTime\n    incidentId: $incidentId\n    includeTimelineEvents: $includeTimelineEvents\n    includeAnomalyEvents: $includeAnomalyEvents\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
+								"variables": "{\n\t\"dwId\": null,\n\t\"fullTableId\": null,\n\t\"eventType\": null,\n\t\"eventTypes\": null,\n\t\"dataset\": null,\n\t\"tablesOlderThanDays\": null,\n\t\"eventStates\": null,\n\t\"excludeState\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"incidentId\": null,\n\t\"includeTimelineEvents\": null,\n\t\"includeAnomalyEvents\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null\n}"
 							}
 						},
 						"url": {
@@ -4834,8 +4501,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getIncidents($dwId: UUID, $incidentTypes: [String], $incidentSubTypes: [IncidentSubType], $eventTypes: [String], $eventStates: [String], $startTime: DateTime, $endTime: DateTime, $incidentIds: [UUID], $owners: [String], $severities: [String], $includeFeedback: [String], $excludeFeedback: [String], $projects: [String], $datasets: [String], $tables: [String], $fullTableIds: [String], $includeTimelineEvents: Boolean, $includeAnomalyEvents: Boolean, $domainId: UUID, $monitorIds: [UUID], $reactionTypes: [IncidentReactionType], $ruleId: UUID, $tagKeyValuePairs: [TagKeyValuePairInput], $tagKeyValues: [TagPair], $tagKeys: [String], $minEventCount: Int, $maxEventCount: Int, $containsKeyAsset: Boolean, $includeNormalized: Boolean, $hasJiraTickets: Boolean, $before: String, $after: String, $first: Int, $last: Int) {\n  getIncidents(\n    dwId: $dwId\n    incidentTypes: $incidentTypes\n    incidentSubTypes: $incidentSubTypes\n    eventTypes: $eventTypes\n    eventStates: $eventStates\n    startTime: $startTime\n    endTime: $endTime\n    incidentIds: $incidentIds\n    owners: $owners\n    severities: $severities\n    includeFeedback: $includeFeedback\n    excludeFeedback: $excludeFeedback\n    projects: $projects\n    datasets: $datasets\n    tables: $tables\n    fullTableIds: $fullTableIds\n    includeTimelineEvents: $includeTimelineEvents\n    includeAnomalyEvents: $includeAnomalyEvents\n    domainId: $domainId\n    monitorIds: $monitorIds\n    reactionTypes: $reactionTypes\n    ruleId: $ruleId\n    tagKeyValuePairs: $tagKeyValuePairs\n    tagKeyValues: $tagKeyValues\n    tagKeys: $tagKeys\n    minEventCount: $minEventCount\n    maxEventCount: $maxEventCount\n    containsKeyAsset: $containsKeyAsset\n    includeNormalized: $includeNormalized\n    hasJiraTickets: $hasJiraTickets\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
-								"variables": "{\n\t\"dwId\": null,\n\t\"incidentTypes\": null,\n\t\"incidentSubTypes\": null,\n\t\"eventTypes\": null,\n\t\"eventStates\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"incidentIds\": null,\n\t\"owners\": null,\n\t\"severities\": null,\n\t\"includeFeedback\": null,\n\t\"excludeFeedback\": null,\n\t\"projects\": null,\n\t\"datasets\": null,\n\t\"tables\": null,\n\t\"fullTableIds\": null,\n\t\"includeTimelineEvents\": null,\n\t\"includeAnomalyEvents\": null,\n\t\"domainId\": null,\n\t\"monitorIds\": null,\n\t\"reactionTypes\": null,\n\t\"ruleId\": null,\n\t\"tagKeyValuePairs\": null,\n\t\"tagKeyValues\": null,\n\t\"tagKeys\": null,\n\t\"minEventCount\": null,\n\t\"maxEventCount\": null,\n\t\"containsKeyAsset\": null,\n\t\"includeNormalized\": null,\n\t\"hasJiraTickets\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null\n}"
+								"query": "query getIncidents($dwId: UUID, $incidentTypes: [String], $incidentSubTypes: [IncidentSubType], $eventTypes: [String], $eventStates: [String], $startTime: DateTime, $endTime: DateTime, $incidentIds: [UUID], $owners: [String], $severities: [String], $includeFeedback: [String], $excludeFeedback: [String], $projects: [String], $datasets: [String], $tables: [String], $fullTableIds: [String], $includeTimelineEvents: Boolean, $includeAnomalyEvents: Boolean, $domainId: UUID, $monitorIds: [UUID], $reactionTypes: [IncidentReactionType], $ruleId: UUID, $tagKeyValuePairs: [TagKeyValuePairInput], $tagKeyValues: [TagPair], $tagKeys: [String], $minEventCount: Int, $maxEventCount: Int, $containsKeyAsset: Boolean, $includeNormalized: Boolean, $before: String, $after: String, $first: Int, $last: Int) {\n  getIncidents(\n    dwId: $dwId\n    incidentTypes: $incidentTypes\n    incidentSubTypes: $incidentSubTypes\n    eventTypes: $eventTypes\n    eventStates: $eventStates\n    startTime: $startTime\n    endTime: $endTime\n    incidentIds: $incidentIds\n    owners: $owners\n    severities: $severities\n    includeFeedback: $includeFeedback\n    excludeFeedback: $excludeFeedback\n    projects: $projects\n    datasets: $datasets\n    tables: $tables\n    fullTableIds: $fullTableIds\n    includeTimelineEvents: $includeTimelineEvents\n    includeAnomalyEvents: $includeAnomalyEvents\n    domainId: $domainId\n    monitorIds: $monitorIds\n    reactionTypes: $reactionTypes\n    ruleId: $ruleId\n    tagKeyValuePairs: $tagKeyValuePairs\n    tagKeyValues: $tagKeyValues\n    tagKeys: $tagKeys\n    minEventCount: $minEventCount\n    maxEventCount: $maxEventCount\n    containsKeyAsset: $containsKeyAsset\n    includeNormalized: $includeNormalized\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
+								"variables": "{\n\t\"dwId\": null,\n\t\"incidentTypes\": null,\n\t\"incidentSubTypes\": null,\n\t\"eventTypes\": null,\n\t\"eventStates\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"incidentIds\": null,\n\t\"owners\": null,\n\t\"severities\": null,\n\t\"includeFeedback\": null,\n\t\"excludeFeedback\": null,\n\t\"projects\": null,\n\t\"datasets\": null,\n\t\"tables\": null,\n\t\"fullTableIds\": null,\n\t\"includeTimelineEvents\": null,\n\t\"includeAnomalyEvents\": null,\n\t\"domainId\": null,\n\t\"monitorIds\": null,\n\t\"reactionTypes\": null,\n\t\"ruleId\": null,\n\t\"tagKeyValuePairs\": null,\n\t\"tagKeyValues\": null,\n\t\"tagKeys\": null,\n\t\"minEventCount\": null,\n\t\"maxEventCount\": null,\n\t\"containsKeyAsset\": null,\n\t\"includeNormalized\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null\n}"
 							}
 						},
 						"url": {
@@ -4945,7 +4612,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getIncidentTypeSummary($dwId: UUID, $startTime: DateTime, $endTime: DateTime, $domainId: UUID) {\n  getIncidentTypeSummary(\n    dwId: $dwId\n    startTime: $startTime\n    endTime: $endTime\n    domainId: $domainId\n  ) {\n    __typename\n    anomalies\n    schemaChanges\n    jsonSchemaChanges\n    deletedTables\n    metricAnomalies\n    customRuleAnomalies\n    performanceAnomalies\n    dbtErrors\n    pseudoIntegrationTest\n  }\n}",
+								"query": "query getIncidentTypeSummary($dwId: UUID, $startTime: DateTime, $endTime: DateTime, $domainId: UUID) {\n  getIncidentTypeSummary(\n    dwId: $dwId\n    startTime: $startTime\n    endTime: $endTime\n    domainId: $domainId\n  ) {\n    __typename\n    anomalies\n    schemaChanges\n    deletedTables\n    metricAnomalies\n    customRuleAnomalies\n    performanceAnomalies\n    dbtErrors\n    pseudoIntegrationTest\n  }\n}",
 								"variables": "{\n\t\"dwId\": null,\n\t\"startTime\": null,\n\t\"endTime\": null,\n\t\"domainId\": null\n}"
 							}
 						},
@@ -4982,7 +4649,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getIncidentNotificationSettingsUsed($incidentId: UUID!) {\n  getIncidentNotificationSettingsUsed(incidentId: $incidentId) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    name # Resource name for notifications created through notifications-as-code\n    isTemplateManaged # Is this monitor managed by a configuration template (notifications-as-code)?\n    namespace # Namespace of notification, used for notifications-as-code\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
+								"query": "query getIncidentNotificationSettingsUsed($incidentId: UUID!) {\n  getIncidentNotificationSettingsUsed(incidentId: $incidentId) {\n    __typename\n    id\n    uuid # Effective ID for notification settings\n    # createdBy # Creator of the notification\n    createdTime # When the notification was first created\n    # lastUpdatedBy # User who last updated this notification\n    lastUpdateTime # When the notification was last updated\n    type # Type of notification integration (e.g. slack)\n    recipient # Deprecated\n    recipients # Destinations to send notifications to\n    anomalyTypes # List of supported incident types to send notifications for\n    incidentSubTypes # All the incident sub-types this notification settings will alert on.\n    extra # Any additional information for various notification integrations\n    # routingRules\n    customMessage # Custom text to be included with the notification\n    notificationScheduleType # Indicates whether the notification is of real time or digest types\n    # digestSettings\n    specificationRule # DEPRECATED\n    notificationEnabled # When enabled notifications for this setting are sent.\n    # slackMsgDetails\n    recipientDisplayName\n    recipientsDisplayNames\n    permalink\n    matchingIncidents\n  }\n}",
 								"variables": "{\n\t\"incidentId\": null\n}"
 							}
 						},
@@ -5278,8 +4945,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query search($objectTypes: [String], $ignoreObjectTypes: [String], $query: String, $offset: Int, $limit: Int, $fullResults: Boolean, $operator: String, $mcon: String, $parentMcon: String, $domainId: UUID, $tagsOnly: Boolean, $includeFacetTypes: [FacetType], $tags: [String], $tagNameQuery: String, $tagValueQuery: String, $resourceIds: [String], $tagFilters: [TagFilterInput], $monitorType: String) {\n  search(\n    objectTypes: $objectTypes\n    ignoreObjectTypes: $ignoreObjectTypes\n    query: $query\n    offset: $offset\n    limit: $limit\n    fullResults: $fullResults\n    operator: $operator\n    mcon: $mcon\n    parentMcon: $parentMcon\n    domainId: $domainId\n    tagsOnly: $tagsOnly\n    includeFacetTypes: $includeFacetTypes\n    tags: $tags\n    tagNameQuery: $tagNameQuery\n    tagValueQuery: $tagValueQuery\n    resourceIds: $resourceIds\n    tagFilters: $tagFilters\n    monitorType: $monitorType\n  ) {\n    __typename\n    totalHits # Number of results\n    offset # Offset for paginating results\n    # results # List of matching results\n    # facetResults # Facet results\n  }\n}",
-								"variables": "{\n\t\"objectTypes\": null,\n\t\"ignoreObjectTypes\": null,\n\t\"query\": null,\n\t\"offset\": null,\n\t\"limit\": null,\n\t\"fullResults\": null,\n\t\"operator\": null,\n\t\"mcon\": null,\n\t\"parentMcon\": null,\n\t\"domainId\": null,\n\t\"tagsOnly\": null,\n\t\"includeFacetTypes\": null,\n\t\"tags\": null,\n\t\"tagNameQuery\": null,\n\t\"tagValueQuery\": null,\n\t\"resourceIds\": null,\n\t\"tagFilters\": null,\n\t\"monitorType\": null\n}"
+								"query": "query search($objectTypes: [String], $ignoreObjectTypes: [String], $query: String, $offset: Int, $limit: Int, $fullResults: Boolean, $operator: String, $mcon: String, $parentMcon: String, $domainId: UUID, $tagsOnly: Boolean, $includeFacetTypes: [FacetType], $tags: [String], $tagNameQuery: String, $tagValueQuery: String, $resourceIds: [String], $tagFilters: [TagFilterInput]) {\n  search(\n    objectTypes: $objectTypes\n    ignoreObjectTypes: $ignoreObjectTypes\n    query: $query\n    offset: $offset\n    limit: $limit\n    fullResults: $fullResults\n    operator: $operator\n    mcon: $mcon\n    parentMcon: $parentMcon\n    domainId: $domainId\n    tagsOnly: $tagsOnly\n    includeFacetTypes: $includeFacetTypes\n    tags: $tags\n    tagNameQuery: $tagNameQuery\n    tagValueQuery: $tagValueQuery\n    resourceIds: $resourceIds\n    tagFilters: $tagFilters\n  ) {\n    __typename\n    totalHits # Number of results\n    offset # Offset for paginating results\n    # results # List of matching results\n    # facetResults # Facet results\n  }\n}",
+								"variables": "{\n\t\"objectTypes\": null,\n\t\"ignoreObjectTypes\": null,\n\t\"query\": null,\n\t\"offset\": null,\n\t\"limit\": null,\n\t\"fullResults\": null,\n\t\"operator\": null,\n\t\"mcon\": null,\n\t\"parentMcon\": null,\n\t\"domainId\": null,\n\t\"tagsOnly\": null,\n\t\"includeFacetTypes\": null,\n\t\"tags\": null,\n\t\"tagNameQuery\": null,\n\t\"tagValueQuery\": null,\n\t\"resourceIds\": null,\n\t\"tagFilters\": null\n}"
 							}
 						},
 						"url": {
@@ -5669,6 +5336,43 @@
 					"response": []
 				},
 				{
+					"name": "getDirectLineage",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getDirectLineage($dwId: UUID, $nodeIds: [String], $mcons: [String], $startTime: DateTime, $endTime: DateTime) {\n  getDirectLineage(\n    dwId: $dwId\n    nodeIds: $nodeIds\n    mcons: $mcons\n    startTime: $startTime\n    endTime: $endTime\n  ) {\n    __typename\n    workbookId\n    friendlyName\n    contentUrl\n    ownerId\n    projectId\n    projectName\n    created\n    updated\n    totalViews\n    workbookCreators\n    viewId\n    category # Node type\n    mcon # Monte Carlo object name\n    name # Object name (table name, report name, etc)\n    displayName # Friendly display name\n    tableId\n    dataSet\n    nodeId # Lineage node id, to be deprecated in favor of MCONs\n    resource # Resource containing this object (warehouse, Tableau account, etc)\n    sampling # A subset of the nodes that were collapsed into a node, only present on nodes of type collapsed-etl or collapsed-ext\n    # downstream\n    # upstream\n  }\n}",
+								"variables": "{\n\t\"dwId\": null,\n\t\"nodeIds\": null,\n\t\"mcons\": null,\n\t\"startTime\": null,\n\t\"endTime\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Get directly upstream and downstream nodes"
+					},
+					"response": []
+				},
+				{
 					"name": "getDownstreamBi",
 					"request": {
 						"method": "POST",
@@ -5891,43 +5595,6 @@
 					"response": []
 				},
 				{
-					"name": "getConnectedTableLineage",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getConnectedTableLineage($mcons: [String!]) {\n  getConnectedTableLineage(mcons: $mcons) {\n    __typename\n    mcon # Monte Carlo full identifier for an entity\n    directlyConnectedMcons # MCONs of nodes directly connected to the entity\n    # directlyConnectedNodes # Nodes directly connected to the entity, including edge properties\n  }\n}",
-								"variables": "{\n\t\"mcons\": [null]\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Get mcon and and directly connected mcons"
-					},
-					"response": []
-				},
-				{
 					"name": "getExternalSourcePathsSample",
 					"request": {
 						"method": "POST",
@@ -6055,7 +5722,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getQueryById($queryId: String!, $timestamp: DateTime!, $queryFormat: String) {\n  getQueryById(\n    queryId: $queryId\n    timestamp: $timestamp\n    queryFormat: $queryFormat\n  ) {\n    __typename\n    queryId\n    userName\n    timestamp\n    query\n    sourceDisplayName\n    destinationDisplayName\n    errorCode\n    errorMsg\n  }\n}",
+								"query": "query getQueryById($queryId: String!, $timestamp: DateTime!, $queryFormat: String) {\n  getQueryById(\n    queryId: $queryId\n    timestamp: $timestamp\n    queryFormat: $queryFormat\n  ) {\n    __typename\n    queryId\n    userName\n    timestamp\n    query\n    sourceDisplayName\n    destinationDisplayName\n  }\n}",
 								"variables": "{\n\t\"queryId\": null,\n\t\"timestamp\": null,\n\t\"queryFormat\": null\n}"
 							}
 						},
@@ -6092,7 +5759,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getQueryByQueryHash($queryHash: String!, $day: Date!, $queryFormat: String) {\n  getQueryByQueryHash(queryHash: $queryHash, day: $day, queryFormat: $queryFormat) {\n    __typename\n    queryId\n    userName\n    timestamp\n    query\n    sourceDisplayName\n    destinationDisplayName\n    errorCode\n    errorMsg\n  }\n}",
+								"query": "query getQueryByQueryHash($queryHash: String!, $day: Date!, $queryFormat: String) {\n  getQueryByQueryHash(queryHash: $queryHash, day: $day, queryFormat: $queryFormat) {\n    __typename\n    queryId\n    userName\n    timestamp\n    query\n    sourceDisplayName\n    destinationDisplayName\n  }\n}",
 								"variables": "{\n\t\"queryHash\": null,\n\t\"day\": null,\n\t\"queryFormat\": null\n}"
 							}
 						},
@@ -6294,6 +5961,43 @@
 							]
 						},
 						"description": "Get users related to object"
+					},
+					"response": []
+				},
+				{
+					"name": "getLineageNodePropertiesV0",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getLineageNodePropertiesV0($dwId: UUID, $nodeIds: [String], $mcons: [String]) {\n  getLineageNodePropertiesV0(dwId: $dwId, nodeIds: $nodeIds, mcons: $mcons) {\n    __typename\n    workbookId\n    friendlyName\n    contentUrl\n    ownerId\n    projectId\n    projectName\n    created\n    updated\n    totalViews\n    workbookCreators\n    viewId\n    category # Node type\n    mcon # Monte Carlo object name\n    name # Object name (table name, report name, etc)\n    displayName # Friendly display name\n    tableId\n    dataSet\n    nodeId # Lineage node id, to be deprecated in favor of MCONs\n    resource # Resource containing this object (warehouse, Tableau account, etc)\n    sampling # A subset of the nodes that were collapsed into a node, only present on nodes of type collapsed-etl or collapsed-ext\n  }\n}",
+								"variables": "{\n\t\"dwId\": null,\n\t\"nodeIds\": null,\n\t\"mcons\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Get properties (metadata) from nodes (DEPRECATED, use GetMetadata instead!)"
 					},
 					"response": []
 				},
@@ -6516,43 +6220,6 @@
 							]
 						},
 						"description": "Retrieve output sample for custom SQL job execution"
-					},
-					"response": []
-				},
-				{
-					"name": "getCustomSqlOutputDownload",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getCustomSqlOutputDownload($dwId: UUID!, $customRuleUuid: UUID!) {\n  getCustomSqlOutputDownload(dwId: $dwId, customRuleUuid: $customRuleUuid) {\n    __typename\n    samplingDisabled\n    downloadUrl # Link to download the query response which expires in 5 minutes.\n  }\n}",
-								"variables": "{\n\t\"dwId\": null,\n\t\"customRuleUuid\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Runs custom sql rule and returns a download link for all results."
 					},
 					"response": []
 				},
@@ -7165,7 +6832,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getUser {\n  getUser {\n    __typename\n    id # The ID of the object.\n    cognitoUserId\n    email\n    firstName\n    lastName\n    displayName # Text to use when displaying the user.\n    state\n    createdOn\n    isSso\n    ssoGroups # Groups provided by the IdP in the last login\n    ssoGroupsUpdatedAt # Last time the SSO groups where updated\n    tokenId # For role=service accounts, the associated API token ID\n    isDeleted\n    # notificationSettingsAdded # Creator of the notification\n    # notificationSettingsModified # User who last updated this notification\n    # userSettings # Associated user\n    # invitees\n    # warehouseDeletedBy\n    # monitorLabelsCreated # Monitor label creator\n    # eventmodelSet\n    # incidentReactionsCreated\n    # incidentReactionsModified\n    # userComments\n    # creator # Who added the monitor\n    # metricmonitoringmodelSet # Who was the last user to update the monitor\n    # combinedtablestatsmodelSet\n    # objectProperties # Who last updated the property\n    # catalogObjectMetadata # Who last updated the object\n    # resources # Who last updated the resource\n    # lineageBlockPatterns # Who last updated the regexp\n    # lineageReplRules # Who last updated the replacement rule\n    # monteCarloConfigTemplates\n    # domainCreatedBy\n    # slackCredentialsV2 # User that installed the Slack app\n    # customUsers # Who last updated the object\n    # unifiedUsers # Associated MC user\n    # lastUpdatedUnifiedUsers # Who last updated the object\n    # collectionPreferenceCreatedBy\n    # collectionPreferenceLastUpdatedBy\n    # collectionPreferenceDeletedBy\n    # ghInstallations # User that installed the Github app\n    # dataProductCreatedBy\n    # dataProductLastUpdatedBy\n    # dataProductDeletedBy\n    # account\n    role # User internal role. One of:  user, service, system. Check the user's groups for their authorization roles\n    # auth # User's aggregate authorization policy.\n  }\n}",
+								"query": "query getUser {\n  getUser {\n    __typename\n    id # The ID of the object.\n    cognitoUserId\n    email\n    firstName\n    lastName\n    displayName # Text to use when displaying the user.\n    state\n    createdOn\n    isSso\n    ssoGroups # Groups provided by the IdP in the last login\n    ssoGroupsUpdatedAt # Last time the SSO groups where updated\n    tokenId # For role=service accounts, the associated API token ID\n    # notificationSettingsAdded # Creator of the notification\n    # notificationSettingsModified # User who last updated this notification\n    # userSettings # Associated user\n    # invitees\n    # monitorLabelsCreated # Monitor label creator\n    # eventmodelSet\n    # incidentReactionsCreated\n    # incidentReactionsModified\n    # userComments\n    # creator # Who added the monitor\n    # metricmonitoringmodelSet # Who was the last user to update the monitor\n    # combinedtablestatsmodelSet\n    # objectProperties # Who last updated the property\n    # catalogObjectMetadata # Who last updated the object\n    # docs # Who last updated the object\n    # docAuthors # Associated user\n    # lineageNodes # Who last updated the node\n    # lineageEdges # Who last updated the edge\n    # resources # Who last updated the resource\n    # lineageBlockPatterns # Who last updated the regexp\n    # lineageReplRules # Who last updated the replacement rule\n    # monteCarloConfigTemplates\n    # domainCreatedBy\n    # slackCredentialsV2 # User that installed the Slack app\n    # customUsers # Who last updated the object\n    # unifiedUsers # Associated MC user\n    # lastUpdatedUnifiedUsers # Who last updated the object\n    # collectionPreferenceCreatedBy\n    # collectionPreferenceLastUpdatedBy\n    # collectionPreferenceDeletedBy\n    # account\n    role # Only used to identify system users. Auth groups supersede this.\n    # auth # User's aggregate authorization policy.\n  }\n}",
 								"variables": "{\n\n}"
 							}
 						},
@@ -7202,7 +6869,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getUserById {\n  getUserById {\n    __typename\n    id # The ID of the object.\n    cognitoUserId\n    email\n    firstName\n    lastName\n    displayName # Text to use when displaying the user.\n    state\n    createdOn\n    isSso\n    ssoGroups # Groups provided by the IdP in the last login\n    ssoGroupsUpdatedAt # Last time the SSO groups where updated\n    tokenId # For role=service accounts, the associated API token ID\n    isDeleted\n    # notificationSettingsAdded # Creator of the notification\n    # notificationSettingsModified # User who last updated this notification\n    # userSettings # Associated user\n    # invitees\n    # warehouseDeletedBy\n    # monitorLabelsCreated # Monitor label creator\n    # eventmodelSet\n    # incidentReactionsCreated\n    # incidentReactionsModified\n    # userComments\n    # creator # Who added the monitor\n    # metricmonitoringmodelSet # Who was the last user to update the monitor\n    # combinedtablestatsmodelSet\n    # objectProperties # Who last updated the property\n    # catalogObjectMetadata # Who last updated the object\n    # resources # Who last updated the resource\n    # lineageBlockPatterns # Who last updated the regexp\n    # lineageReplRules # Who last updated the replacement rule\n    # monteCarloConfigTemplates\n    # domainCreatedBy\n    # slackCredentialsV2 # User that installed the Slack app\n    # customUsers # Who last updated the object\n    # unifiedUsers # Associated MC user\n    # lastUpdatedUnifiedUsers # Who last updated the object\n    # collectionPreferenceCreatedBy\n    # collectionPreferenceLastUpdatedBy\n    # collectionPreferenceDeletedBy\n    # ghInstallations # User that installed the Github app\n    # dataProductCreatedBy\n    # dataProductLastUpdatedBy\n    # dataProductDeletedBy\n    # account\n    role # User internal role. One of:  user, service, system. Check the user's groups for their authorization roles\n    # auth # User's aggregate authorization policy.\n  }\n}",
+								"query": "query getUserById {\n  getUserById {\n    __typename\n    id # The ID of the object.\n    cognitoUserId\n    email\n    firstName\n    lastName\n    displayName # Text to use when displaying the user.\n    state\n    createdOn\n    isSso\n    ssoGroups # Groups provided by the IdP in the last login\n    ssoGroupsUpdatedAt # Last time the SSO groups where updated\n    tokenId # For role=service accounts, the associated API token ID\n    # notificationSettingsAdded # Creator of the notification\n    # notificationSettingsModified # User who last updated this notification\n    # userSettings # Associated user\n    # invitees\n    # monitorLabelsCreated # Monitor label creator\n    # eventmodelSet\n    # incidentReactionsCreated\n    # incidentReactionsModified\n    # userComments\n    # creator # Who added the monitor\n    # metricmonitoringmodelSet # Who was the last user to update the monitor\n    # combinedtablestatsmodelSet\n    # objectProperties # Who last updated the property\n    # catalogObjectMetadata # Who last updated the object\n    # docs # Who last updated the object\n    # docAuthors # Associated user\n    # lineageNodes # Who last updated the node\n    # lineageEdges # Who last updated the edge\n    # resources # Who last updated the resource\n    # lineageBlockPatterns # Who last updated the regexp\n    # lineageReplRules # Who last updated the replacement rule\n    # monteCarloConfigTemplates\n    # domainCreatedBy\n    # slackCredentialsV2 # User that installed the Slack app\n    # customUsers # Who last updated the object\n    # unifiedUsers # Associated MC user\n    # lastUpdatedUnifiedUsers # Who last updated the object\n    # collectionPreferenceCreatedBy\n    # collectionPreferenceLastUpdatedBy\n    # collectionPreferenceDeletedBy\n    # account\n    role # Only used to identify system users. Auth groups supersede this.\n    # auth # User's aggregate authorization policy.\n  }\n}",
 								"variables": "{\n\n}"
 							}
 						},
@@ -7239,7 +6906,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getWarehouse($uuid: UUID) {\n  getWarehouse(uuid: $uuid) {\n    __typename\n    id\n    uuid\n    name\n    connectionType\n    credentialsS3Key\n    bqProjectId\n    # account\n    # dataCollector\n    createdOn\n    isDeleted\n    deletedAt\n    # deletedBy\n    config\n    # connections\n    # tables\n    # incidents # Warehouse an incident belongs to\n    # events\n    # datasets\n    # muteRule\n    # fivetranDestinations\n    dataSamplingEnabled # Indicates whether the customer has opted out of sampling for the warehouse\n    dataSamplingRestricted # Indicates whether the customer has opted into sampling restrictions for the warehouse\n    valueIngestionEnabled # Indicates whether the customer has opted out of value ingestion for the warehouse (opting out of sampling disables this as well)\n    valueBasedThresholdEnabled # Indicates whether rules with value-based thresholds can be created and executed\n    customSqlSamplingSupported # Indicates whether the DC version for this warehouse supports custom SQL sampling\n    customSqlSamplingEnabled # Indicates whether output of qualifying custom SQL rules in this warehouse will be sampled\n    supportsReproductionQueries\n    supportsSampling\n  }\n}",
+								"query": "query getWarehouse($uuid: UUID) {\n  getWarehouse(uuid: $uuid) {\n    __typename\n    id\n    uuid\n    name\n    connectionType\n    credentialsS3Key\n    bqProjectId\n    # account\n    # dataCollector\n    createdOn\n    config\n    # connections\n    # tables\n    # incidents # Warehouse an incident belongs to\n    # events\n    # datasets\n    # muteRule\n    # fivetranDestinations\n    dataSamplingEnabled # Indicates whether the customer has opted out of sampling for the warehouse\n    valueIngestionEnabled # Indicates whether the customer has opted out of value ingestion for the warehouse (opting out of sampling disables this as well)\n    valueBasedThresholdEnabled # Indicates whether rules with value-based thresholds can be created and executed\n    customSqlSamplingSupported # Indicates whether the DC version for this warehouse supports custom SQL sampling\n    customSqlSamplingEnabled # Indicates whether output of qualifying custom SQL rules in this warehouse will be sampled\n    supportsReproductionQueries\n    supportsSampling\n  }\n}",
 								"variables": "{\n\t\"uuid\": null\n}"
 							}
 						},
@@ -7313,7 +6980,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getTable($dwId: UUID, $fullTableId: String, $mcon: String) {\n  getTable(dwId: $dwId, fullTableId: $fullTableId, mcon: $mcon) {\n    __typename\n    id # The ID of the object.\n    tableId\n    fullTableId\n    # warehouse\n    discoveredTime\n    friendlyName\n    location\n    projectName\n    dataset\n    description # (Deprecated) Use `description` from `CatalogObjectMetadataModel` \n    tableType\n    isEncrypted\n    createdTime\n    lastModified\n    viewQuery\n    labels\n    path\n    priority\n    tracked\n    status\n    freshnessAnomaly\n    sizeAnomaly\n    freshnessSizeAnomaly\n    metricAnomaly\n    dynamicTable\n    isDeleted\n    deletedAt\n    lastObserved\n    isExcluded\n    dataProvider\n    mcon # The table's MCON (MC Object Name)\n    # anomalies\n    # tags\n    # versions\n    # events\n    # monitors # Table related to monitor\n    # dbtNodes # Associated table\n    # dbtRunSteps # Associated table\n    # fivetranconnectormodelSet\n    # thresholds # Section describing various anomaly thresholds for the table\n    # getThresholds # Section describing various anomaly thresholds for the table\n    schemaChangeCount\n    statusScalar\n    nodeId\n    isPartialDateRange\n    # lastUpdates # List of table updates\n    # lastUpdatesV2 # List of table updates\n    # totalRowCounts # List of total row count values for the table\n    # totalByteCounts # List of total byte count values for the table\n    # writeThroughput # List of latest write throughput in bytes, at most 10000 data points.\n    # objectsDeleted # List of latest objects deleted events, at most 10000 data points.\n    # maintenanceWindows # List of windows in which the training is ignored\n    # checkTableMetricsExistence # List of metric name and whether they exist or not on a table\n    isMuted # No incidents will be created for this table if muted.\n    mutedEventTypes # Muting is active for the specified event types.\n    # tableStats # Stats for the table\n    # objectProperties\n    isTransitioningDataProvider\n    # tableCapabilities # Capabilities for the table\n    # partitionKeys # Partition key information\n    # usageStats # Section describing various table usage stats\n  }\n}",
+								"query": "query getTable($dwId: UUID, $fullTableId: String, $mcon: String) {\n  getTable(dwId: $dwId, fullTableId: $fullTableId, mcon: $mcon) {\n    __typename\n    id # The ID of the object.\n    tableId\n    fullTableId\n    # warehouse\n    discoveredTime\n    friendlyName\n    description\n    location\n    projectName\n    dataset\n    tableType\n    isEncrypted\n    createdTime\n    lastModified\n    viewQuery\n    labels\n    path\n    priority\n    tracked\n    status\n    freshnessAnomaly\n    sizeAnomaly\n    freshnessSizeAnomaly\n    metricAnomaly\n    dynamicTable\n    isDeleted\n    lastObserved\n    isExcluded\n    dataProvider\n    mcon # The table's MCON (MC Object Name)\n    # anomalies\n    # tags\n    # versions\n    # events\n    # monitors # Table related to monitor\n    # dbtNodes # Associated table\n    # dbtRunSteps # Associated table\n    # fivetranconnectormodelSet\n    # usageStats # Section describing various table usage stats\n    # thresholds # Section describing various anomaly thresholds for the table\n    # getThresholds # Section describing various anomaly thresholds for the table\n    schemaChangeCount\n    statusScalar\n    nodeId\n    isPartialDateRange\n    # lastUpdates # List of table updates\n    # lastUpdatesV2 # List of table updates\n    # totalRowCounts # List of total row count values for the table\n    # totalByteCounts # List of total byte count values for the table\n    # writeThroughput # List of latest write throughput in bytes, at most 10000 data points.\n    # objectsDeleted # List of latest objects deleted events, at most 10000 data points.\n    # maintenanceWindows # List of windows in which the training is ignored\n    # checkTableMetricsExistence # List of metric name and whether they exist or not on a table\n    isMuted # No incidents will be created for this table if muted.\n    mutedEventTypes # Muting is active for the specified event types.\n    # tableStats # Stats for the table\n    # objectProperties\n    isTransitioningDataProvider\n    # tableCapabilities # Capabilities for the table\n    # partitionKeys # Partition key information\n  }\n}",
 								"variables": "{\n\t\"dwId\": null,\n\t\"fullTableId\": null,\n\t\"mcon\": null\n}"
 							}
 						},
@@ -7350,8 +7017,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getTables($dwId: UUID, $search: String, $status: [String], $domainId: UUID, $before: String, $after: String, $first: Int, $last: Int, $tableId: String, $fullTableId: String, $warehouse: ID, $discoveredTime: DateTime, $friendlyName: String, $location: String, $projectName: String, $dataset: String, $description: String, $tableType: String, $isEncrypted: Boolean, $createdTime: DateTime, $lastModified: DateTime, $viewQuery: String, $path: String, $priority: Int, $tracked: Boolean, $freshnessAnomaly: Boolean, $sizeAnomaly: Boolean, $freshnessSizeAnomaly: Boolean, $metricAnomaly: Boolean, $dynamicTable: Boolean, $isDeleted: Boolean, $deletedAt: DateTime, $lastObserved: DateTime, $isExcluded: Boolean, $dataProvider: String, $mcon: String, $lastObserved_Gt: DateTime, $orderBy: String) {\n  getTables(\n    dwId: $dwId\n    search: $search\n    status: $status\n    domainId: $domainId\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    tableId: $tableId\n    fullTableId: $fullTableId\n    warehouse: $warehouse\n    discoveredTime: $discoveredTime\n    friendlyName: $friendlyName\n    location: $location\n    projectName: $projectName\n    dataset: $dataset\n    description: $description\n    tableType: $tableType\n    isEncrypted: $isEncrypted\n    createdTime: $createdTime\n    lastModified: $lastModified\n    viewQuery: $viewQuery\n    path: $path\n    priority: $priority\n    tracked: $tracked\n    freshnessAnomaly: $freshnessAnomaly\n    sizeAnomaly: $sizeAnomaly\n    freshnessSizeAnomaly: $freshnessSizeAnomaly\n    metricAnomaly: $metricAnomaly\n    dynamicTable: $dynamicTable\n    isDeleted: $isDeleted\n    deletedAt: $deletedAt\n    lastObserved: $lastObserved\n    isExcluded: $isExcluded\n    dataProvider: $dataProvider\n    mcon: $mcon\n    lastObserved_Gt: $lastObserved_Gt\n    orderBy: $orderBy\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
-								"variables": "{\n\t\"dwId\": null,\n\t\"search\": null,\n\t\"status\": null,\n\t\"domainId\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"tableId\": null,\n\t\"fullTableId\": null,\n\t\"warehouse\": null,\n\t\"discoveredTime\": null,\n\t\"friendlyName\": null,\n\t\"location\": null,\n\t\"projectName\": null,\n\t\"dataset\": null,\n\t\"description\": null,\n\t\"tableType\": null,\n\t\"isEncrypted\": null,\n\t\"createdTime\": null,\n\t\"lastModified\": null,\n\t\"viewQuery\": null,\n\t\"path\": null,\n\t\"priority\": null,\n\t\"tracked\": null,\n\t\"freshnessAnomaly\": null,\n\t\"sizeAnomaly\": null,\n\t\"freshnessSizeAnomaly\": null,\n\t\"metricAnomaly\": null,\n\t\"dynamicTable\": null,\n\t\"isDeleted\": null,\n\t\"deletedAt\": null,\n\t\"lastObserved\": null,\n\t\"isExcluded\": null,\n\t\"dataProvider\": null,\n\t\"mcon\": null,\n\t\"lastObserved_Gt\": null,\n\t\"orderBy\": null\n}"
+								"query": "query getTables($dwId: UUID, $search: String, $status: [String], $domainId: UUID, $before: String, $after: String, $first: Int, $last: Int, $tableId: String, $fullTableId: String, $warehouse: ID, $discoveredTime: DateTime, $friendlyName: String, $description: String, $location: String, $projectName: String, $dataset: String, $tableType: String, $isEncrypted: Boolean, $createdTime: DateTime, $lastModified: DateTime, $viewQuery: String, $path: String, $priority: Int, $tracked: Boolean, $freshnessAnomaly: Boolean, $sizeAnomaly: Boolean, $freshnessSizeAnomaly: Boolean, $metricAnomaly: Boolean, $dynamicTable: Boolean, $isDeleted: Boolean, $lastObserved: DateTime, $isExcluded: Boolean, $dataProvider: String, $mcon: String, $lastObserved_Gt: DateTime, $orderBy: String) {\n  getTables(\n    dwId: $dwId\n    search: $search\n    status: $status\n    domainId: $domainId\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    tableId: $tableId\n    fullTableId: $fullTableId\n    warehouse: $warehouse\n    discoveredTime: $discoveredTime\n    friendlyName: $friendlyName\n    description: $description\n    location: $location\n    projectName: $projectName\n    dataset: $dataset\n    tableType: $tableType\n    isEncrypted: $isEncrypted\n    createdTime: $createdTime\n    lastModified: $lastModified\n    viewQuery: $viewQuery\n    path: $path\n    priority: $priority\n    tracked: $tracked\n    freshnessAnomaly: $freshnessAnomaly\n    sizeAnomaly: $sizeAnomaly\n    freshnessSizeAnomaly: $freshnessSizeAnomaly\n    metricAnomaly: $metricAnomaly\n    dynamicTable: $dynamicTable\n    isDeleted: $isDeleted\n    lastObserved: $lastObserved\n    isExcluded: $isExcluded\n    dataProvider: $dataProvider\n    mcon: $mcon\n    lastObserved_Gt: $lastObserved_Gt\n    orderBy: $orderBy\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
+								"variables": "{\n\t\"dwId\": null,\n\t\"search\": null,\n\t\"status\": null,\n\t\"domainId\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"tableId\": null,\n\t\"fullTableId\": null,\n\t\"warehouse\": null,\n\t\"discoveredTime\": null,\n\t\"friendlyName\": null,\n\t\"description\": null,\n\t\"location\": null,\n\t\"projectName\": null,\n\t\"dataset\": null,\n\t\"tableType\": null,\n\t\"isEncrypted\": null,\n\t\"createdTime\": null,\n\t\"lastModified\": null,\n\t\"viewQuery\": null,\n\t\"path\": null,\n\t\"priority\": null,\n\t\"tracked\": null,\n\t\"freshnessAnomaly\": null,\n\t\"sizeAnomaly\": null,\n\t\"freshnessSizeAnomaly\": null,\n\t\"metricAnomaly\": null,\n\t\"dynamicTable\": null,\n\t\"isDeleted\": null,\n\t\"lastObserved\": null,\n\t\"isExcluded\": null,\n\t\"dataProvider\": null,\n\t\"mcon\": null,\n\t\"lastObserved_Gt\": null,\n\t\"orderBy\": null\n}"
 							}
 						},
 						"url": {
@@ -7387,8 +7054,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getTablesHealth($dwId: UUID, $search: String, $domainId: UUID, $tableMcons: [String], $tableContains: [String], $tagsContains: [String], $tagKeyValuePairs: [TagKeyValuePairInput], $keyAssetsOnly: Boolean, $hasIncidentsOnly: Boolean, $hasIncidentsStartTime: DateTime, $hasIncidentsEndTime: DateTime, $hasIncidentsIncludeFeedback: [String], $hasIncidentsExcludeFeedback: [String], $hasIncidentsIncludeNormalized: Boolean, $hasIncidentsSeverities: [String], $incidentCategories: [IncidentCategory], $before: String, $after: String, $first: Int, $last: Int, $tableId: String, $fullTableId: String, $warehouse: ID, $discoveredTime: DateTime, $friendlyName: String, $location: String, $projectName: String, $dataset: String, $description: String, $tableType: String, $isEncrypted: Boolean, $createdTime: DateTime, $lastModified: DateTime, $viewQuery: String, $path: String, $priority: Int, $tracked: Boolean, $freshnessAnomaly: Boolean, $sizeAnomaly: Boolean, $freshnessSizeAnomaly: Boolean, $metricAnomaly: Boolean, $dynamicTable: Boolean, $isDeleted: Boolean, $deletedAt: DateTime, $lastObserved: DateTime, $isExcluded: Boolean, $dataProvider: String, $mcon: String, $orderBy: String) {\n  getTablesHealth(\n    dwId: $dwId\n    search: $search\n    domainId: $domainId\n    tableMcons: $tableMcons\n    tableContains: $tableContains\n    tagsContains: $tagsContains\n    tagKeyValuePairs: $tagKeyValuePairs\n    keyAssetsOnly: $keyAssetsOnly\n    hasIncidentsOnly: $hasIncidentsOnly\n    hasIncidentsStartTime: $hasIncidentsStartTime\n    hasIncidentsEndTime: $hasIncidentsEndTime\n    hasIncidentsIncludeFeedback: $hasIncidentsIncludeFeedback\n    hasIncidentsExcludeFeedback: $hasIncidentsExcludeFeedback\n    hasIncidentsIncludeNormalized: $hasIncidentsIncludeNormalized\n    hasIncidentsSeverities: $hasIncidentsSeverities\n    incidentCategories: $incidentCategories\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    tableId: $tableId\n    fullTableId: $fullTableId\n    warehouse: $warehouse\n    discoveredTime: $discoveredTime\n    friendlyName: $friendlyName\n    location: $location\n    projectName: $projectName\n    dataset: $dataset\n    description: $description\n    tableType: $tableType\n    isEncrypted: $isEncrypted\n    createdTime: $createdTime\n    lastModified: $lastModified\n    viewQuery: $viewQuery\n    path: $path\n    priority: $priority\n    tracked: $tracked\n    freshnessAnomaly: $freshnessAnomaly\n    sizeAnomaly: $sizeAnomaly\n    freshnessSizeAnomaly: $freshnessSizeAnomaly\n    metricAnomaly: $metricAnomaly\n    dynamicTable: $dynamicTable\n    isDeleted: $isDeleted\n    deletedAt: $deletedAt\n    lastObserved: $lastObserved\n    isExcluded: $isExcluded\n    dataProvider: $dataProvider\n    mcon: $mcon\n    orderBy: $orderBy\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n    totalCount # Total count of elements in the result set.\n  }\n}",
-								"variables": "{\n\t\"dwId\": null,\n\t\"search\": null,\n\t\"domainId\": null,\n\t\"tableMcons\": null,\n\t\"tableContains\": null,\n\t\"tagsContains\": null,\n\t\"tagKeyValuePairs\": null,\n\t\"keyAssetsOnly\": null,\n\t\"hasIncidentsOnly\": null,\n\t\"hasIncidentsStartTime\": null,\n\t\"hasIncidentsEndTime\": null,\n\t\"hasIncidentsIncludeFeedback\": null,\n\t\"hasIncidentsExcludeFeedback\": null,\n\t\"hasIncidentsIncludeNormalized\": null,\n\t\"hasIncidentsSeverities\": null,\n\t\"incidentCategories\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"tableId\": null,\n\t\"fullTableId\": null,\n\t\"warehouse\": null,\n\t\"discoveredTime\": null,\n\t\"friendlyName\": null,\n\t\"location\": null,\n\t\"projectName\": null,\n\t\"dataset\": null,\n\t\"description\": null,\n\t\"tableType\": null,\n\t\"isEncrypted\": null,\n\t\"createdTime\": null,\n\t\"lastModified\": null,\n\t\"viewQuery\": null,\n\t\"path\": null,\n\t\"priority\": null,\n\t\"tracked\": null,\n\t\"freshnessAnomaly\": null,\n\t\"sizeAnomaly\": null,\n\t\"freshnessSizeAnomaly\": null,\n\t\"metricAnomaly\": null,\n\t\"dynamicTable\": null,\n\t\"isDeleted\": null,\n\t\"deletedAt\": null,\n\t\"lastObserved\": null,\n\t\"isExcluded\": null,\n\t\"dataProvider\": null,\n\t\"mcon\": null,\n\t\"orderBy\": null\n}"
+								"query": "query getTablesHealth($dwId: UUID, $search: String, $domainId: UUID, $tableMcons: [String], $tableContains: [String], $tagsContains: [String], $tagKeyValuePairs: [TagKeyValuePairInput], $keyAssetsOnly: Boolean, $hasIncidentsOnly: Boolean, $hasIncidentsStartTime: DateTime, $hasIncidentsEndTime: DateTime, $hasIncidentsIncludeFeedback: [String], $hasIncidentsExcludeFeedback: [String], $hasIncidentsIncludeNormalized: Boolean, $hasIncidentsSeverities: [String], $incidentCategories: [IncidentCategory], $before: String, $after: String, $first: Int, $last: Int, $tableId: String, $fullTableId: String, $warehouse: ID, $discoveredTime: DateTime, $friendlyName: String, $description: String, $location: String, $projectName: String, $dataset: String, $tableType: String, $isEncrypted: Boolean, $createdTime: DateTime, $lastModified: DateTime, $viewQuery: String, $path: String, $priority: Int, $tracked: Boolean, $freshnessAnomaly: Boolean, $sizeAnomaly: Boolean, $freshnessSizeAnomaly: Boolean, $metricAnomaly: Boolean, $dynamicTable: Boolean, $isDeleted: Boolean, $lastObserved: DateTime, $isExcluded: Boolean, $dataProvider: String, $mcon: String, $orderBy: String) {\n  getTablesHealth(\n    dwId: $dwId\n    search: $search\n    domainId: $domainId\n    tableMcons: $tableMcons\n    tableContains: $tableContains\n    tagsContains: $tagsContains\n    tagKeyValuePairs: $tagKeyValuePairs\n    keyAssetsOnly: $keyAssetsOnly\n    hasIncidentsOnly: $hasIncidentsOnly\n    hasIncidentsStartTime: $hasIncidentsStartTime\n    hasIncidentsEndTime: $hasIncidentsEndTime\n    hasIncidentsIncludeFeedback: $hasIncidentsIncludeFeedback\n    hasIncidentsExcludeFeedback: $hasIncidentsExcludeFeedback\n    hasIncidentsIncludeNormalized: $hasIncidentsIncludeNormalized\n    hasIncidentsSeverities: $hasIncidentsSeverities\n    incidentCategories: $incidentCategories\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    tableId: $tableId\n    fullTableId: $fullTableId\n    warehouse: $warehouse\n    discoveredTime: $discoveredTime\n    friendlyName: $friendlyName\n    description: $description\n    location: $location\n    projectName: $projectName\n    dataset: $dataset\n    tableType: $tableType\n    isEncrypted: $isEncrypted\n    createdTime: $createdTime\n    lastModified: $lastModified\n    viewQuery: $viewQuery\n    path: $path\n    priority: $priority\n    tracked: $tracked\n    freshnessAnomaly: $freshnessAnomaly\n    sizeAnomaly: $sizeAnomaly\n    freshnessSizeAnomaly: $freshnessSizeAnomaly\n    metricAnomaly: $metricAnomaly\n    dynamicTable: $dynamicTable\n    isDeleted: $isDeleted\n    lastObserved: $lastObserved\n    isExcluded: $isExcluded\n    dataProvider: $dataProvider\n    mcon: $mcon\n    orderBy: $orderBy\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n    totalCount # Total count of elements in the result set.\n  }\n}",
+								"variables": "{\n\t\"dwId\": null,\n\t\"search\": null,\n\t\"domainId\": null,\n\t\"tableMcons\": null,\n\t\"tableContains\": null,\n\t\"tagsContains\": null,\n\t\"tagKeyValuePairs\": null,\n\t\"keyAssetsOnly\": null,\n\t\"hasIncidentsOnly\": null,\n\t\"hasIncidentsStartTime\": null,\n\t\"hasIncidentsEndTime\": null,\n\t\"hasIncidentsIncludeFeedback\": null,\n\t\"hasIncidentsExcludeFeedback\": null,\n\t\"hasIncidentsIncludeNormalized\": null,\n\t\"hasIncidentsSeverities\": null,\n\t\"incidentCategories\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"tableId\": null,\n\t\"fullTableId\": null,\n\t\"warehouse\": null,\n\t\"discoveredTime\": null,\n\t\"friendlyName\": null,\n\t\"description\": null,\n\t\"location\": null,\n\t\"projectName\": null,\n\t\"dataset\": null,\n\t\"tableType\": null,\n\t\"isEncrypted\": null,\n\t\"createdTime\": null,\n\t\"lastModified\": null,\n\t\"viewQuery\": null,\n\t\"path\": null,\n\t\"priority\": null,\n\t\"tracked\": null,\n\t\"freshnessAnomaly\": null,\n\t\"sizeAnomaly\": null,\n\t\"freshnessSizeAnomaly\": null,\n\t\"metricAnomaly\": null,\n\t\"dynamicTable\": null,\n\t\"isDeleted\": null,\n\t\"lastObserved\": null,\n\t\"isExcluded\": null,\n\t\"dataProvider\": null,\n\t\"mcon\": null,\n\t\"orderBy\": null\n}"
 							}
 						},
 						"url": {
@@ -7757,7 +7424,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getUsersInAccount($roles: [String], $search: String, $offset: Int, $before: String, $after: String, $first: Int, $last: Int, $email: String, $firstName: String, $lastName: String, $role: String) {\n  getUsersInAccount(\n    roles: $roles\n    search: $search\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    email: $email\n    firstName: $firstName\n    lastName: $lastName\n    role: $role\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n    totalCount\n    edgeCount\n  }\n}",
+								"query": "query getUsersInAccount($roles: [String], $search: String, $offset: Int, $before: String, $after: String, $first: Int, $last: Int, $email: String, $firstName: String, $lastName: String, $role: String) {\n  getUsersInAccount(\n    roles: $roles\n    search: $search\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    email: $email\n    firstName: $firstName\n    lastName: $lastName\n    role: $role\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
 								"variables": "{\n\t\"roles\": null,\n\t\"search\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"email\": null,\n\t\"firstName\": null,\n\t\"lastName\": null,\n\t\"role\": null\n}"
 							}
 						},
@@ -7794,7 +7461,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getInvitesInAccount($roles: [String], $offset: Int, $before: String, $after: String, $first: Int, $last: Int, $state: String) {\n  getInvitesInAccount(\n    roles: $roles\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    state: $state\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n    totalCount\n    edgeCount\n  }\n}",
+								"query": "query getInvitesInAccount($roles: [String], $offset: Int, $before: String, $after: String, $first: Int, $last: Int, $state: String) {\n  getInvitesInAccount(\n    roles: $roles\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n    state: $state\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
 								"variables": "{\n\t\"roles\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null,\n\t\"state\": null\n}"
 							}
 						},
@@ -8053,8 +7720,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getDatabricksClusterInfo($connectionId: UUID, $connectionConfig: SparkDatabricksConnectionInput) {\n  getDatabricksClusterInfo(\n    connectionId: $connectionId\n    connectionConfig: $connectionConfig\n  ) {\n    __typename\n    clusterId # ID of the cluster.\n    state # State of the cluster.\n  }\n}",
-								"variables": "{\n\t\"connectionId\": null,\n\t\"connectionConfig\": null\n}"
+								"query": "query getDatabricksClusterInfo($connectionId: UUID) {\n  getDatabricksClusterInfo(connectionId: $connectionId) {\n    __typename\n    clusterId # ID of the cluster.\n    state # State of the cluster.\n  }\n}",
+								"variables": "{\n\t\"connectionId\": null\n}"
 							}
 						},
 						"url": {
@@ -8090,8 +7757,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getDatabricksWarehouseInfo($connectionId: UUID, $connectionConfig: DatabricksSqlWarehouseConnectionInput) {\n  getDatabricksWarehouseInfo(\n    connectionId: $connectionId\n    connectionConfig: $connectionConfig\n  ) {\n    __typename\n    warehouseId # ID of the warehouse.\n    state # State of the warehouse.\n  }\n}",
-								"variables": "{\n\t\"connectionId\": null,\n\t\"connectionConfig\": null\n}"
+								"query": "query getDatabricksWarehouseInfo($connectionId: UUID) {\n  getDatabricksWarehouseInfo(connectionId: $connectionId) {\n    __typename\n    warehouseId # ID of the warehouse.\n    state # State of the warehouse.\n  }\n}",
+								"variables": "{\n\t\"connectionId\": null\n}"
 							}
 						},
 						"url": {
@@ -8312,7 +7979,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query getEtlContainers {\n  getEtlContainers {\n    __typename\n    id\n    # account\n    uuid\n    # dataCollector\n    type\n    name # A friendly name for this etl container\n    # connections\n    # airflowtaskrunmodelSet # ETL container associated with the event\n  }\n}",
+								"query": "query getEtlContainers {\n  getEtlContainers {\n    __typename\n    id\n    # account\n    uuid\n    # dataCollector\n    type\n    name # A friendly name for this etl container\n    # connections\n  }\n}",
 								"variables": "{\n\n}"
 							}
 						},
@@ -8477,154 +8144,6 @@
 							]
 						},
 						"description": "Execute a validation test on an integration"
-					},
-					"response": []
-				},
-				{
-					"name": "listProjects",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query listProjects($connectionId: UUID!, $pageSize: Int, $pageToken: String) {\n  listProjects(\n    connectionId: $connectionId\n    pageSize: $pageSize\n    pageToken: $pageToken\n  ) {\n    __typename\n    # projects # List of project IDs\n    nextPageToken # Page token for the next page\n  }\n}",
-								"variables": "{\n\t\"connectionId\": null,\n\t\"pageSize\": null,\n\t\"pageToken\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Lists projects for a given connection"
-					},
-					"response": []
-				},
-				{
-					"name": "listDatasets",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query listDatasets($connectionId: UUID!, $projectId: String!, $pageSize: Int, $pageToken: String) {\n  listDatasets(\n    connectionId: $connectionId\n    projectId: $projectId\n    pageSize: $pageSize\n    pageToken: $pageToken\n  ) {\n    __typename\n    # datasets # List of dataset IDs\n    nextPageToken # Page token for the next page\n  }\n}",
-								"variables": "{\n\t\"connectionId\": null,\n\t\"projectId\": null,\n\t\"pageSize\": null,\n\t\"pageToken\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Lists datasets for a given connection"
-					},
-					"response": []
-				},
-				{
-					"name": "getAirflowTaskResults",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getAirflowTaskResults($resourceName: String, $fromDate: DateTime!, $toDate: DateTime, $success: Boolean, $state: String, $dagId: String, $taskId: String, $offset: Int, $before: String, $after: String, $first: Int, $last: Int) {\n  getAirflowTaskResults(\n    resourceName: $resourceName\n    fromDate: $fromDate\n    toDate: $toDate\n    success: $success\n    state: $state\n    dagId: $dagId\n    taskId: $taskId\n    offset: $offset\n    before: $before\n    after: $after\n    first: $first\n    last: $last\n  ) {\n    __typename\n    # pageInfo # Pagination data for this connection.\n    # edges # Contains the nodes in this connection.\n  }\n}",
-								"variables": "{\n\t\"resourceName\": null,\n\t\"fromDate\": null,\n\t\"toDate\": null,\n\t\"success\": null,\n\t\"state\": null,\n\t\"dagId\": null,\n\t\"taskId\": null,\n\t\"offset\": null,\n\t\"before\": null,\n\t\"after\": null,\n\t\"first\": null,\n\t\"last\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Get Airflow Task runs"
-					},
-					"response": []
-				},
-				{
-					"name": "fixSqlQuery",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query fixSqlQuery($sqlQuery: String!, $errorMessage: String!, $datawarehouseUuid: UUID!, $messages: [AIMessageInput]) {\n  fixSqlQuery(\n    sqlQuery: $sqlQuery\n    errorMessage: $errorMessage\n    datawarehouseUuid: $datawarehouseUuid\n    messages: $messages\n  ) {\n    __typename\n    message # Message from the specified actor\n    actor # The actor that sends the message\n  }\n}",
-								"variables": "{\n\t\"sqlQuery\": null,\n\t\"errorMessage\": null,\n\t\"datawarehouseUuid\": null,\n\t\"messages\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Given a SQL query it uses AI to fix it"
 					},
 					"response": []
 				}
@@ -9263,6 +8782,80 @@
 					"response": []
 				},
 				{
+					"name": "createOrUpdateDoc",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createOrUpdateDoc($content: String!, $docMcon: String, $parentDocMcon: String, $title: String!) {\n  createOrUpdateDoc(\n    content: $content\n    docMcon: $docMcon\n    parentDocMcon: $parentDocMcon\n    title: $title\n  ) {\n    __typename\n    # doc\n  }\n}",
+								"variables": "{\n\t\"content\": null,\n\t\"docMcon\": null,\n\t\"parentDocMcon\": null,\n\t\"title\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Create or update a Doc"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDoc",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mcd-id",
+								"value": "{{x-mcd-id}}"
+							},
+							{
+								"key": "x-mcd-token",
+								"value": "{{x-mcd-token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteDoc($docMcon: String!) {\n  deleteDoc(docMcon: $docMcon) {\n    __typename\n    success\n  }\n}",
+								"variables": "{\n\t\"docMcon\": null\n}"
+							}
+						},
+						"url": {
+							"raw": "https://api.getmontecarlo.com/graphql",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getmontecarlo",
+								"com"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Delete Doc"
+					},
+					"response": []
+				},
+				{
 					"name": "createCustomUser",
 					"request": {
 						"method": "POST",
@@ -9781,43 +9374,6 @@
 					"response": []
 				},
 				{
-					"name": "updateDbtProjectInfo",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation updateDbtProjectInfo($remoteUrl: String, $subdirectory: String, $uuid: UUID!) {\n  updateDbtProjectInfo(\n    remoteUrl: $remoteUrl\n    subdirectory: $subdirectory\n    uuid: $uuid\n  ) {\n    __typename\n    # project # dbt project after the update\n  }\n}",
-								"variables": "{\n\t\"remoteUrl\": null,\n\t\"subdirectory\": null,\n\t\"uuid\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Set extra information about dbt project"
-					},
-					"response": []
-				},
-				{
 					"name": "createOrUpdateMonteCarloConfigTemplate",
 					"request": {
 						"method": "POST",
@@ -9851,43 +9407,6 @@
 							]
 						},
 						"description": "Create or update a Monte Carlo Config Template"
-					},
-					"response": []
-				},
-				{
-					"name": "createOrUpdateMonteCarloConfigTemplateAsync",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation createOrUpdateMonteCarloConfigTemplateAsync($configTemplateJson: String!, $dryRun: Boolean, $misconfiguredAsWarning: Boolean, $namespace: String!, $resource: String) {\n  createOrUpdateMonteCarloConfigTemplateAsync(\n    configTemplateJson: $configTemplateJson\n    dryRun: $dryRun\n    misconfiguredAsWarning: $misconfiguredAsWarning\n    namespace: $namespace\n    resource: $resource\n  ) {\n    __typename\n    # response # Response\n  }\n}",
-								"variables": "{\n\t\"configTemplateJson\": null,\n\t\"dryRun\": null,\n\t\"misconfiguredAsWarning\": null,\n\t\"namespace\": null,\n\t\"resource\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Create or update a Monte Carlo Config Template asynchronously"
 					},
 					"response": []
 				},
@@ -10056,8 +9575,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createCustomRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $description: String, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $intervalMinutes: Int, $labels: [String], $notes: String, $notifyRuleRunFailure: Boolean, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String) {\n  createCustomRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null\n}"
+								"query": "mutation createCustomRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $description: String, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $intervalMinutes: Int, $labels: [String], $notes: String, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String) {\n  createCustomRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null\n}"
 							}
 						},
 						"url": {
@@ -10093,8 +9612,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createOrUpdateCustomRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $description: String, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $intervalMinutes: Int, $labels: [String], $notes: String, $notifyRuleRunFailure: Boolean, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String) {\n  createOrUpdateCustomRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null\n}"
+								"query": "mutation createOrUpdateCustomRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $description: String, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $intervalMinutes: Int, $labels: [String], $notes: String, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String) {\n  createOrUpdateCustomRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null\n}"
 							}
 						},
 						"url": {
@@ -10130,8 +9649,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createOrUpdateVolumeRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $dataCollectionScheduleConfig: ScheduleConfigInput, $description: String!, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $labels: [String], $notes: String, $notifyRuleRunFailure: Boolean, $override: Boolean, $scheduleConfig: ScheduleConfigInput!, $severity: String, $timezone: String) {\n  createOrUpdateVolumeRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    dataCollectionScheduleConfig: $dataCollectionScheduleConfig\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    labels: $labels\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    override: $override\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"dataCollectionScheduleConfig\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"override\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"timezone\": null\n}"
+								"query": "mutation createOrUpdateVolumeRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $dataCollectionScheduleConfig: ScheduleConfigInput, $description: String!, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $labels: [String], $notes: String, $override: Boolean, $scheduleConfig: ScheduleConfigInput!, $severity: String, $timezone: String) {\n  createOrUpdateVolumeRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    dataCollectionScheduleConfig: $dataCollectionScheduleConfig\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    labels: $labels\n    notes: $notes\n    override: $override\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"dataCollectionScheduleConfig\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"override\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"timezone\": null\n}"
 							}
 						},
 						"url": {
@@ -10167,8 +9686,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createCustomMetricRule($comparisons: [CustomRuleComparisonInput!], $connectionId: UUID, $customRuleUuid: UUID, $customSamplingSql: String, $customSql: String!, $description: String!, $dwId: UUID!, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $fieldMetric: FieldMetricInput, $fieldQueryParameters: FieldQueryParametersInput, $intervalMinutes: Int, $labels: [String], $notes: String, $notifyRuleRunFailure: Boolean, $queryResultType: QueryResultType, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String, $variables: JSONString) {\n  createCustomMetricRule(\n    comparisons: $comparisons\n    connectionId: $connectionId\n    customRuleUuid: $customRuleUuid\n    customSamplingSql: $customSamplingSql\n    customSql: $customSql\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    fieldMetric: $fieldMetric\n    fieldQueryParameters: $fieldQueryParameters\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    queryResultType: $queryResultType\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n    variables: $variables\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"connectionId\": null,\n\t\"customRuleUuid\": null,\n\t\"customSamplingSql\": null,\n\t\"customSql\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"fieldMetric\": null,\n\t\"fieldQueryParameters\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"queryResultType\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null,\n\t\"variables\": null\n}"
+								"query": "mutation createCustomMetricRule($comparisons: [CustomRuleComparisonInput!], $connectionId: UUID, $customRuleUuid: UUID, $customSamplingSql: String, $customSql: String!, $description: String!, $dwId: UUID!, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $fieldMetric: FieldMetricInput, $intervalMinutes: Int, $labels: [String], $notes: String, $queryResultType: QueryResultType, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String, $variables: JSONString) {\n  createCustomMetricRule(\n    comparisons: $comparisons\n    connectionId: $connectionId\n    customRuleUuid: $customRuleUuid\n    customSamplingSql: $customSamplingSql\n    customSql: $customSql\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    fieldMetric: $fieldMetric\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    queryResultType: $queryResultType\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n    variables: $variables\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"connectionId\": null,\n\t\"customRuleUuid\": null,\n\t\"customSamplingSql\": null,\n\t\"customSql\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"fieldMetric\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"queryResultType\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null,\n\t\"variables\": null\n}"
 							}
 						},
 						"url": {
@@ -10204,8 +9723,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createOrUpdateCustomMetricRule($comparisons: [CustomRuleComparisonInput!], $connectionId: UUID, $customRuleUuid: UUID, $customSamplingSql: String, $customSql: String!, $description: String!, $dwId: UUID!, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $fieldMetric: FieldMetricInput, $fieldQueryParameters: FieldQueryParametersInput, $intervalMinutes: Int, $labels: [String], $notes: String, $notifyRuleRunFailure: Boolean, $queryResultType: QueryResultType, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String, $variables: JSONString) {\n  createOrUpdateCustomMetricRule(\n    comparisons: $comparisons\n    connectionId: $connectionId\n    customRuleUuid: $customRuleUuid\n    customSamplingSql: $customSamplingSql\n    customSql: $customSql\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    fieldMetric: $fieldMetric\n    fieldQueryParameters: $fieldQueryParameters\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    queryResultType: $queryResultType\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n    variables: $variables\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"connectionId\": null,\n\t\"customRuleUuid\": null,\n\t\"customSamplingSql\": null,\n\t\"customSql\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"fieldMetric\": null,\n\t\"fieldQueryParameters\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"queryResultType\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null,\n\t\"variables\": null\n}"
+								"query": "mutation createOrUpdateCustomMetricRule($comparisons: [CustomRuleComparisonInput!], $connectionId: UUID, $customRuleUuid: UUID, $customSamplingSql: String, $customSql: String!, $description: String!, $dwId: UUID!, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $fieldMetric: FieldMetricInput, $intervalMinutes: Int, $labels: [String], $notes: String, $queryResultType: QueryResultType, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String, $variables: JSONString) {\n  createOrUpdateCustomMetricRule(\n    comparisons: $comparisons\n    connectionId: $connectionId\n    customRuleUuid: $customRuleUuid\n    customSamplingSql: $customSamplingSql\n    customSql: $customSql\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    fieldMetric: $fieldMetric\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    queryResultType: $queryResultType\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n    variables: $variables\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"connectionId\": null,\n\t\"customRuleUuid\": null,\n\t\"customSamplingSql\": null,\n\t\"customSql\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"fieldMetric\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"queryResultType\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null,\n\t\"variables\": null\n}"
 							}
 						},
 						"url": {
@@ -10315,8 +9834,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createOrUpdateFreshnessCustomRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $description: String, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $intervalMinutes: Int, $labels: [String], $notes: String, $notifyRuleRunFailure: Boolean, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String) {\n  createOrUpdateFreshnessCustomRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null\n}"
+								"query": "mutation createOrUpdateFreshnessCustomRule($comparisons: [CustomRuleComparisonInput!], $customRuleUuid: UUID, $description: String, $dwId: UUID, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $intervalMinutes: Int, $labels: [String], $notes: String, $scheduleConfig: ScheduleConfigInput, $severity: String, $startTime: DateTime, $timezone: String) {\n  createOrUpdateFreshnessCustomRule(\n    comparisons: $comparisons\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    notes: $notes\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"notes\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"timezone\": null\n}"
 							}
 						},
 						"url": {
@@ -10759,7 +10278,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation deleteLineageNode($mcon: String!) {\n  deleteLineageNode(mcon: $mcon) {\n    __typename\n    objectsDeleted # Total number of objects (nodes + edges) deleted\n    nodesDeleted # Total number of nodes deleted\n    edgesDeleted # Total number of edges deleted\n  }\n}",
+								"query": "mutation deleteLineageNode($mcon: String!) {\n  deleteLineageNode(mcon: $mcon) {\n    __typename\n    objectsDeleted # Number of objects deleted\n  }\n}",
 								"variables": "{\n\t\"mcon\": null\n}"
 							}
 						},
@@ -10870,8 +10389,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createOrUpdateFieldQualityRule($comparisons: [CustomRuleComparisonInput!], $connectionId: UUID, $customRuleUuid: UUID, $description: String!, $dwId: UUID!, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $fieldNames: [String!], $filters: [FieldMetricFilterInput], $intervalMinutes: Int, $labels: [String], $metricType: FieldMetricType!, $notes: String, $notifyRuleRunFailure: Boolean, $scheduleConfig: ScheduleConfigInput!, $severity: String, $startTime: DateTime, $tableMcons: [String!], $timezone: String) {\n  createOrUpdateFieldQualityRule(\n    comparisons: $comparisons\n    connectionId: $connectionId\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    fieldNames: $fieldNames\n    filters: $filters\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    metricType: $metricType\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    tableMcons: $tableMcons\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
-								"variables": "{\n\t\"comparisons\": [null],\n\t\"connectionId\": null,\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"fieldNames\": [null],\n\t\"filters\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"metricType\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"tableMcons\": [null],\n\t\"timezone\": null\n}"
+								"query": "mutation createOrUpdateFieldQualityRule($comparisons: [CustomRuleComparisonInput!], $connectionId: UUID, $customRuleUuid: UUID, $description: String!, $dwId: UUID!, $eventRollupCount: Int, $eventRollupUntilChanged: Boolean, $fieldNames: [String!], $filters: [FieldMetricFilterInput], $intervalMinutes: Int, $labels: [String], $metricType: FieldMetricType!, $notes: String, $scheduleConfig: ScheduleConfigInput!, $severity: String, $startTime: DateTime, $tableMcons: [String!], $timezone: String) {\n  createOrUpdateFieldQualityRule(\n    comparisons: $comparisons\n    connectionId: $connectionId\n    customRuleUuid: $customRuleUuid\n    description: $description\n    dwId: $dwId\n    eventRollupCount: $eventRollupCount\n    eventRollupUntilChanged: $eventRollupUntilChanged\n    fieldNames: $fieldNames\n    filters: $filters\n    intervalMinutes: $intervalMinutes\n    labels: $labels\n    metricType: $metricType\n    notes: $notes\n    scheduleConfig: $scheduleConfig\n    severity: $severity\n    startTime: $startTime\n    tableMcons: $tableMcons\n    timezone: $timezone\n  ) {\n    __typename\n    # customRule\n  }\n}",
+								"variables": "{\n\t\"comparisons\": [null],\n\t\"connectionId\": null,\n\t\"customRuleUuid\": null,\n\t\"description\": null,\n\t\"dwId\": null,\n\t\"eventRollupCount\": null,\n\t\"eventRollupUntilChanged\": null,\n\t\"fieldNames\": [null],\n\t\"filters\": null,\n\t\"intervalMinutes\": null,\n\t\"labels\": null,\n\t\"metricType\": null,\n\t\"notes\": null,\n\t\"scheduleConfig\": null,\n\t\"severity\": null,\n\t\"startTime\": null,\n\t\"tableMcons\": [null],\n\t\"timezone\": null\n}"
 							}
 						},
 						"url": {
@@ -10923,7 +10442,7 @@
 								"graphql"
 							]
 						},
-						"description": "Create or update an asset's metadata"
+						"description": "Create or update catalog object metadata"
 					},
 					"response": []
 				},
@@ -10960,7 +10479,7 @@
 								"graphql"
 							]
 						},
-						"description": "Delete metadata for an asset"
+						"description": "Delete metadata for an object"
 					},
 					"response": []
 				},
@@ -11277,8 +10796,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createOrUpdateMonitor($aggSelectExpression: String, $aggTimeInterval: MonitorAggTimeInterval, $connectionId: UUID, $description: String, $disableLookBackBootstrap: Boolean, $failedScheduleAccountNotificationId: UUID, $fields: [String], $fullTableId: String, $labels: [String], $lookbackDays: Int, $mcon: String, $monitorType: String, $notes: String, $notifyRuleRunFailure: Boolean, $resourceId: UUID, $scheduleConfig: ScheduleConfigInput, $segmentedExpressions: [String], $selectExpressions: [MonitorSelectExpressionInput], $timeAxisName: String, $timeAxisType: String, $unnestFields: [String], $usePartitionClause: Boolean, $uuid: UUID, $whereCondition: String) {\n  createOrUpdateMonitor(\n    aggSelectExpression: $aggSelectExpression\n    aggTimeInterval: $aggTimeInterval\n    connectionId: $connectionId\n    description: $description\n    disableLookBackBootstrap: $disableLookBackBootstrap\n    failedScheduleAccountNotificationId: $failedScheduleAccountNotificationId\n    fields: $fields\n    fullTableId: $fullTableId\n    labels: $labels\n    lookbackDays: $lookbackDays\n    mcon: $mcon\n    monitorType: $monitorType\n    notes: $notes\n    notifyRuleRunFailure: $notifyRuleRunFailure\n    resourceId: $resourceId\n    scheduleConfig: $scheduleConfig\n    segmentedExpressions: $segmentedExpressions\n    selectExpressions: $selectExpressions\n    timeAxisName: $timeAxisName\n    timeAxisType: $timeAxisType\n    unnestFields: $unnestFields\n    usePartitionClause: $usePartitionClause\n    uuid: $uuid\n    whereCondition: $whereCondition\n  ) {\n    __typename\n    # monitor\n  }\n}",
-								"variables": "{\n\t\"aggSelectExpression\": null,\n\t\"aggTimeInterval\": null,\n\t\"connectionId\": null,\n\t\"description\": null,\n\t\"disableLookBackBootstrap\": null,\n\t\"failedScheduleAccountNotificationId\": null,\n\t\"fields\": null,\n\t\"fullTableId\": null,\n\t\"labels\": null,\n\t\"lookbackDays\": null,\n\t\"mcon\": null,\n\t\"monitorType\": null,\n\t\"notes\": null,\n\t\"notifyRuleRunFailure\": null,\n\t\"resourceId\": null,\n\t\"scheduleConfig\": null,\n\t\"segmentedExpressions\": null,\n\t\"selectExpressions\": null,\n\t\"timeAxisName\": null,\n\t\"timeAxisType\": null,\n\t\"unnestFields\": null,\n\t\"usePartitionClause\": null,\n\t\"uuid\": null,\n\t\"whereCondition\": null\n}"
+								"query": "mutation createOrUpdateMonitor($aggSelectExpression: String, $aggTimeInterval: MonitorAggTimeInterval, $connectionId: UUID, $description: String, $disableLookBackBootstrap: Boolean, $failedScheduleAccountNotificationId: UUID, $fields: [String], $fullTableId: String, $labels: [String], $lookbackDays: Int, $mcon: String, $monitorType: String, $notes: String, $resourceId: UUID, $scheduleConfig: ScheduleConfigInput, $segmentedExpressions: [String], $selectExpressions: [MonitorSelectExpressionInput], $timeAxisName: String, $timeAxisType: String, $unnestFields: [String], $usePartitionClause: Boolean, $uuid: UUID, $whereCondition: String) {\n  createOrUpdateMonitor(\n    aggSelectExpression: $aggSelectExpression\n    aggTimeInterval: $aggTimeInterval\n    connectionId: $connectionId\n    description: $description\n    disableLookBackBootstrap: $disableLookBackBootstrap\n    failedScheduleAccountNotificationId: $failedScheduleAccountNotificationId\n    fields: $fields\n    fullTableId: $fullTableId\n    labels: $labels\n    lookbackDays: $lookbackDays\n    mcon: $mcon\n    monitorType: $monitorType\n    notes: $notes\n    resourceId: $resourceId\n    scheduleConfig: $scheduleConfig\n    segmentedExpressions: $segmentedExpressions\n    selectExpressions: $selectExpressions\n    timeAxisName: $timeAxisName\n    timeAxisType: $timeAxisType\n    unnestFields: $unnestFields\n    usePartitionClause: $usePartitionClause\n    uuid: $uuid\n    whereCondition: $whereCondition\n  ) {\n    __typename\n    # monitor\n  }\n}",
+								"variables": "{\n\t\"aggSelectExpression\": null,\n\t\"aggTimeInterval\": null,\n\t\"connectionId\": null,\n\t\"description\": null,\n\t\"disableLookBackBootstrap\": null,\n\t\"failedScheduleAccountNotificationId\": null,\n\t\"fields\": null,\n\t\"fullTableId\": null,\n\t\"labels\": null,\n\t\"lookbackDays\": null,\n\t\"mcon\": null,\n\t\"monitorType\": null,\n\t\"notes\": null,\n\t\"resourceId\": null,\n\t\"scheduleConfig\": null,\n\t\"segmentedExpressions\": null,\n\t\"selectExpressions\": null,\n\t\"timeAxisName\": null,\n\t\"timeAxisType\": null,\n\t\"unnestFields\": null,\n\t\"usePartitionClause\": null,\n\t\"uuid\": null,\n\t\"whereCondition\": null\n}"
 							}
 						},
 						"url": {
@@ -12038,43 +11557,6 @@
 					"response": []
 				},
 				{
-					"name": "toggleRestrictSampling",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation toggleRestrictSampling($dwId: UUID!, $enable: Boolean!) {\n  toggleRestrictSampling(dwId: $dwId, enable: $enable) {\n    __typename\n    enable\n  }\n}",
-								"variables": "{\n\t\"dwId\": null,\n\t\"enable\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Enable/disable to restrict certain roles to access sampling data"
-					},
-					"response": []
-				},
-				{
 					"name": "toggleDisableValueIngestion",
 					"request": {
 						"method": "POST",
@@ -12108,43 +11590,6 @@
 							]
 						},
 						"description": "Enable/disable the value ingestion feature"
-					},
-					"response": []
-				},
-				{
-					"name": "toggleDisableValueSamplingWhenTesting",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation toggleDisableValueSamplingWhenTesting($disable: Boolean!, $dwId: UUID!) {\n  toggleDisableValueSamplingWhenTesting(disable: $disable, dwId: $dwId) {\n    __typename\n    disabled\n  }\n}",
-								"variables": "{\n\t\"disable\": null,\n\t\"dwId\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Enable/disable the sampling data feature when testing value-based sql rules"
 					},
 					"response": []
 				},
@@ -12478,43 +11923,6 @@
 							]
 						},
 						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "updateAccountDisplayAssetsSearchTags",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation updateAccountDisplayAssetsSearchTags($display: Boolean!) {\n  updateAccountDisplayAssetsSearchTags(display: $display) {\n    __typename\n    # account\n  }\n}",
-								"variables": "{\n\t\"display\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Updates account-level setting for displaying search tags on assets ui"
 					},
 					"response": []
 				},
@@ -12885,43 +12293,6 @@
 							]
 						},
 						"description": "Remove user from account"
-					},
-					"response": []
-				},
-				{
-					"name": "disableUser",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation disableUser($email: String!) {\n  disableUser(email: $email) {\n    __typename\n    # user\n  }\n}",
-								"variables": "{\n\t\"email\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Disable a user"
 					},
 					"response": []
 				},
@@ -13534,8 +12905,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation testDbtCloudCredentials($connectionOptions: ConnectionTestOptions, $connectionType: String, $dbtCloudAccountId: String, $dbtCloudApiToken: String, $dbtCloudBaseUrl: String, $dbtCloudWebhookHmacSecret: String) {\n  testDbtCloudCredentials(\n    connectionOptions: $connectionOptions\n    connectionType: $connectionType\n    dbtCloudAccountId: $dbtCloudAccountId\n    dbtCloudApiToken: $dbtCloudApiToken\n    dbtCloudBaseUrl: $dbtCloudBaseUrl\n    dbtCloudWebhookHmacSecret: $dbtCloudWebhookHmacSecret\n  ) {\n    __typename\n    key # Path to key for adding a connection\n    success # Indicates whether the operation was completed successfully\n  }\n}",
-								"variables": "{\n\t\"connectionOptions\": null,\n\t\"connectionType\": null,\n\t\"dbtCloudAccountId\": null,\n\t\"dbtCloudApiToken\": null,\n\t\"dbtCloudBaseUrl\": null,\n\t\"dbtCloudWebhookHmacSecret\": null\n}"
+								"query": "mutation testDbtCloudCredentials($connectionOptions: ConnectionTestOptions, $connectionType: String, $dbtCloudAccountId: String, $dbtCloudApiToken: String, $dbtCloudBaseUrl: String) {\n  testDbtCloudCredentials(\n    connectionOptions: $connectionOptions\n    connectionType: $connectionType\n    dbtCloudAccountId: $dbtCloudAccountId\n    dbtCloudApiToken: $dbtCloudApiToken\n    dbtCloudBaseUrl: $dbtCloudBaseUrl\n  ) {\n    __typename\n    key # Path to key for adding a connection\n    success # Indicates whether the operation was completed successfully\n  }\n}",
+								"variables": "{\n\t\"connectionOptions\": null,\n\t\"connectionType\": null,\n\t\"dbtCloudAccountId\": null,\n\t\"dbtCloudApiToken\": null,\n\t\"dbtCloudBaseUrl\": null\n}"
 							}
 						},
 						"url": {
@@ -14069,43 +13440,6 @@
 							]
 						},
 						"description": "Enable/disable the Slack reply warning feature"
-					},
-					"response": []
-				},
-				{
-					"name": "toggleConnectionEnable",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation toggleConnectionEnable($connectionId: UUID!, $enable: Boolean!) {\n  toggleConnectionEnable(connectionId: $connectionId, enable: $enable) {\n    __typename\n    success # Indicates whether the connection was enabled or disabled successfully\n  }\n}",
-								"variables": "{\n\t\"connectionId\": null,\n\t\"enable\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Enable or Disable a connection. This will also skip/un-skip all related data collector schedules."
 					},
 					"response": []
 				},
@@ -15125,8 +14459,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation startDatabricksCluster($connectionConfig: SparkDatabricksConnectionInput, $connectionId: UUID) {\n  startDatabricksCluster(\n    connectionConfig: $connectionConfig\n    connectionId: $connectionId\n  ) {\n    __typename\n    success # Indicates whether the operation was completed successfully.\n  }\n}",
-								"variables": "{\n\t\"connectionConfig\": null,\n\t\"connectionId\": null\n}"
+								"query": "mutation startDatabricksCluster($connectionId: UUID) {\n  startDatabricksCluster(connectionId: $connectionId) {\n    __typename\n    success # Indicates whether the operation was completed successfully.\n  }\n}",
+								"variables": "{\n\t\"connectionId\": null\n}"
 							}
 						},
 						"url": {
@@ -15162,8 +14496,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation startDatabricksWarehouse($connectionConfig: DatabricksSqlWarehouseConnectionInput, $connectionId: UUID) {\n  startDatabricksWarehouse(\n    connectionConfig: $connectionConfig\n    connectionId: $connectionId\n  ) {\n    __typename\n    success # Indicates whether the operation was completed successfully.\n  }\n}",
-								"variables": "{\n\t\"connectionConfig\": null,\n\t\"connectionId\": null\n}"
+								"query": "mutation startDatabricksWarehouse($connectionId: UUID) {\n  startDatabricksWarehouse(connectionId: $connectionId) {\n    __typename\n    success # Indicates whether the operation was completed successfully.\n  }\n}",
+								"variables": "{\n\t\"connectionId\": null\n}"
 							}
 						},
 						"url": {
@@ -15384,8 +14718,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation testSnowflakeCredentialsV2($connectionDetails: SnowflakeConnectionDetails!, $connectionId: UUID, $connectionOptions: ConnectionTestOptions, $validationName: String!) {\n  testSnowflakeCredentialsV2(\n    connectionDetails: $connectionDetails\n    connectionId: $connectionId\n    connectionOptions: $connectionOptions\n    validationName: $validationName\n  ) {\n    __typename\n    key # Path to key for adding a connection.This key is only generated when calling the SAVE_CREDENTIALS validation.\n    # validationResult # Result of the validation.\n  }\n}",
-								"variables": "{\n\t\"connectionDetails\": null,\n\t\"connectionId\": null,\n\t\"connectionOptions\": null,\n\t\"validationName\": null\n}"
+								"query": "mutation testSnowflakeCredentialsV2($connectionDetails: SnowflakeConnectionDetails!, $connectionOptions: ConnectionTestOptions, $validationName: String!) {\n  testSnowflakeCredentialsV2(\n    connectionDetails: $connectionDetails\n    connectionOptions: $connectionOptions\n    validationName: $validationName\n  ) {\n    __typename\n    key # Path to key for adding a connection. This key is only generated when calling the SAVE_CREDENTIALS validation.\n    # validationResult # Result of the validation.\n  }\n}",
+								"variables": "{\n\t\"connectionDetails\": null,\n\t\"connectionOptions\": null,\n\t\"validationName\": null\n}"
 							}
 						},
 						"url": {
@@ -15659,266 +14993,7 @@
 								"graphql"
 							]
 						},
-						"description": "Test Databricks SQL Warehouse credentials"
-					},
-					"response": []
-				},
-				{
-					"name": "testDatabricksCredentialsV2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation testDatabricksCredentialsV2($connectionDetails: SparkDatabricksInput!, $connectionOptions: ConnectionTestOptions, $jobId: String!, $validationName: String!) {\n  testDatabricksCredentialsV2(\n    connectionDetails: $connectionDetails\n    connectionOptions: $connectionOptions\n    jobId: $jobId\n    validationName: $validationName\n  ) {\n    __typename\n    key # Path to key for adding a connection. This key is only generated when calling the SAVE_CREDENTIALS validation.\n    # validationResult # Result of the validation.\n  }\n}",
-								"variables": "{\n\t\"connectionDetails\": null,\n\t\"connectionOptions\": null,\n\t\"jobId\": null,\n\t\"validationName\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Test Databricks credentials"
-					},
-					"response": []
-				},
-				{
-					"name": "testDatabricksSqlWarehouseCredentialsV2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation testDatabricksSqlWarehouseCredentialsV2($connectionDetails: DatabricksSqlWarehouseInput!, $connectionOptions: ConnectionTestOptions, $validationName: String!) {\n  testDatabricksSqlWarehouseCredentialsV2(\n    connectionDetails: $connectionDetails\n    connectionOptions: $connectionOptions\n    validationName: $validationName\n  ) {\n    __typename\n    key # Path to key for adding a connection. This key is only generated when calling the SAVE_CREDENTIALS validation.\n    # validationResult # Result of the validation.\n  }\n}",
-								"variables": "{\n\t\"connectionDetails\": null,\n\t\"connectionOptions\": null,\n\t\"validationName\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
 						"description": "Test Power BI credentials"
-					},
-					"response": []
-				},
-				{
-					"name": "testDatabricksSparkCredentialsV2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation testDatabricksSparkCredentialsV2($connectionDetails: SparkDatabricksInput!, $connectionOptions: ConnectionTestOptions, $validationName: String!) {\n  testDatabricksSparkCredentialsV2(\n    connectionDetails: $connectionDetails\n    connectionOptions: $connectionOptions\n    validationName: $validationName\n  ) {\n    __typename\n    key # Path to key for adding a connection. This key is only generated when calling the SAVE_CREDENTIALS validation.\n    # validationResult # Result of the validation.\n  }\n}",
-								"variables": "{\n\t\"connectionDetails\": null,\n\t\"connectionOptions\": null,\n\t\"validationName\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Test Databricks AP Cluster credentials"
-					},
-					"response": []
-				},
-				{
-					"name": "testAirflowCredentialsV2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation testAirflowCredentialsV2($connectionDetails: AirflowConnectionDetails!, $connectionOptions: ConnectionTestOptions, $validationName: String!) {\n  testAirflowCredentialsV2(\n    connectionDetails: $connectionDetails\n    connectionOptions: $connectionOptions\n    validationName: $validationName\n  ) {\n    __typename\n    key # Path to key for adding a connection. This key is only generated when calling the SAVE_CREDENTIALS validation.\n    # validationResult # Result of the validation.\n  }\n}",
-								"variables": "{\n\t\"connectionDetails\": null,\n\t\"connectionOptions\": null,\n\t\"validationName\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Test Airflow credentials"
-					},
-					"response": []
-				},
-				{
-					"name": "uploadAirflowDagResult",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation uploadAirflowDagResult($dagId: String!, $endDate: DateTime!, $env: AirflowEnvInput!, $executionDate: DateTime!, $payload: GenericScalar!, $reason: String, $resourceName: String, $runId: String!, $startDate: DateTime!, $state: String!, $success: Boolean!) {\n  uploadAirflowDagResult(\n    dagId: $dagId\n    endDate: $endDate\n    env: $env\n    executionDate: $executionDate\n    payload: $payload\n    reason: $reason\n    resourceName: $resourceName\n    runId: $runId\n    startDate: $startDate\n    state: $state\n    success: $success\n  ) {\n    __typename\n    ok # Result\n  }\n}",
-								"variables": "{\n\t\"dagId\": null,\n\t\"endDate\": null,\n\t\"env\": null,\n\t\"executionDate\": null,\n\t\"payload\": null,\n\t\"reason\": null,\n\t\"resourceName\": null,\n\t\"runId\": null,\n\t\"startDate\": null,\n\t\"state\": null,\n\t\"success\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Upload Airflow DAG run result"
-					},
-					"response": []
-				},
-				{
-					"name": "uploadAirflowTaskResult",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation uploadAirflowTaskResult($attemptNumber: Int!, $dagId: String!, $duration: Float, $endDate: DateTime!, $env: AirflowEnvInput!, $exceptionMessage: String, $executionDate: DateTime!, $logUrl: String, $nextRetryDate: DateTime, $payload: GenericScalar!, $resourceName: String, $runId: String!, $startDate: DateTime!, $state: String!, $success: Boolean!, $taskId: String!) {\n  uploadAirflowTaskResult(\n    attemptNumber: $attemptNumber\n    dagId: $dagId\n    duration: $duration\n    endDate: $endDate\n    env: $env\n    exceptionMessage: $exceptionMessage\n    executionDate: $executionDate\n    logUrl: $logUrl\n    nextRetryDate: $nextRetryDate\n    payload: $payload\n    resourceName: $resourceName\n    runId: $runId\n    startDate: $startDate\n    state: $state\n    success: $success\n    taskId: $taskId\n  ) {\n    __typename\n    ok # Result\n  }\n}",
-								"variables": "{\n\t\"attemptNumber\": null,\n\t\"dagId\": null,\n\t\"duration\": null,\n\t\"endDate\": null,\n\t\"env\": null,\n\t\"exceptionMessage\": null,\n\t\"executionDate\": null,\n\t\"logUrl\": null,\n\t\"nextRetryDate\": null,\n\t\"payload\": null,\n\t\"resourceName\": null,\n\t\"runId\": null,\n\t\"startDate\": null,\n\t\"state\": null,\n\t\"success\": null,\n\t\"taskId\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Upload Airflow Task run result"
-					},
-					"response": []
-				},
-				{
-					"name": "uploadAirflowSlaMisses",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation uploadAirflowSlaMisses($dagId: String!, $env: AirflowEnvInput!, $payload: GenericScalar!, $resourceName: String) {\n  uploadAirflowSlaMisses(\n    dagId: $dagId\n    env: $env\n    payload: $payload\n    resourceName: $resourceName\n  ) {\n    __typename\n    ok # Result\n  }\n}",
-								"variables": "{\n\t\"dagId\": null,\n\t\"env\": null,\n\t\"payload\": null,\n\t\"resourceName\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Upload Airflow SLA misses"
 					},
 					"response": []
 				}

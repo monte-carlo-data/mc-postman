@@ -27,12 +27,15 @@ jobs:
       with:
         repository: Escape-Technologies/graphman
         path: graphman
+      
+    - name: remove deno lock from graphman
+      run: rm graphman/deno.lock
 
     - name: set up deno
       uses: denoland/setup-deno@v1
 
     - name: run the graphman command
-      run: deno run --allow-net --allow-read --allow-write graphman/src/cli.ts --lock=deno.lock --lock-write https://api.getmontecarlo.com/graphql --H="x-mcd-id:${{ secrets.MCD_ID }}" -H="x-mcd-token:${{ secrets.MCD_TOKEN }}" --out=new.json
+      run: deno run --allow-net --allow-read --allow-write graphman/src/cli.ts https://api.getmontecarlo.com/graphql --H="x-mcd-id:${{ secrets.MCD_ID }}" --H="x-mcd-token:${{ secrets.MCD_TOKEN }}" --out=new.json
 
     - name: cleanup graphman
       run: rm -rf graphman/

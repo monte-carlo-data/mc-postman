@@ -1,4 +1,4 @@
-name: Generate postman collection and update if changed
+name: Update Collection in SA workspace
 
 on:
   workflow_dispatch:

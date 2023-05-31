@@ -33,7 +33,7 @@ jobs:
       run: ls -l && pwd
       
     - name: enter directory postmanctl
-      run: cd postmanctl/cmd/postmanctl && go install && go run main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -h
+      run: cd postmanctl/cmd/postmanctl && go install && go run main.go replace collection 24800539-c205410a-d342-41ab-9f06-7ae7b639a0d2 -f /home/runner/work/mc-postman/mc-postman/mc_postman_collection.json
       
  
 

@@ -45,43 +45,6 @@
 					"response": []
 				},
 				{
-					"name": "getDataProducts",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query getDataProducts($domainId: UUID) {\n  getDataProducts(domainId: $domainId) {\n    __typename\n    id # The ID of the object.\n    createdTime\n    updatedTime\n    uuid # The data product id\n    name # User defined data product name.\n    # createdInDomain # Related data product created in a domain\n    # account\n    description\n    # createdBy\n    # lastUpdatedBy\n    isDeleted # Flag to indicate whether this entry is in use or not.\n    deletedAt\n    # deletedBy\n    # assets # Data product an asset belongs to\n  }\n}",
-								"variables": "{\n\t\"domainId\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Get a list of data products"
-					},
-					"response": []
-				},
-				{
 					"name": "parseQuery",
 					"request": {
 						"method": "POST",
@@ -8670,80 +8633,6 @@
 		{
 			"name": "Mutations",
 			"item": [
-				{
-					"name": "deleteDataProduct",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation deleteDataProduct($uuid: UUID!) {\n  deleteDataProduct(uuid: $uuid) {\n    __typename\n    success # Status of the deletion operation.\n  }\n}",
-								"variables": "{\n\t\"uuid\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Delete a data product"
-					},
-					"response": []
-				},
-				{
-					"name": "createOrUpdateDataProduct",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-mcd-id",
-								"value": "{{x-mcd-id}}"
-							},
-							{
-								"key": "x-mcd-token",
-								"value": "{{x-mcd-token}}"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation createOrUpdateDataProduct($description: String, $domainId: UUID, $mcons: [String], $name: String, $uuid: UUID) {\n  createOrUpdateDataProduct(\n    description: $description\n    domainId: $domainId\n    mcons: $mcons\n    name: $name\n    uuid: $uuid\n  ) {\n    __typename\n    # dataProduct # Created or updated domain\n  }\n}",
-								"variables": "{\n\t\"description\": null,\n\t\"domainId\": null,\n\t\"mcons\": null,\n\t\"name\": null,\n\t\"uuid\": null\n}"
-							}
-						},
-						"url": {
-							"raw": "https://api.getmontecarlo.com/graphql",
-							"protocol": "https",
-							"host": [
-								"api",
-								"getmontecarlo",
-								"com"
-							],
-							"path": [
-								"graphql"
-							]
-						},
-						"description": "Create or update a data product"
-					},
-					"response": []
-				},
 				{
 					"name": "linkGithubAppInstallation",
 					"request": {
